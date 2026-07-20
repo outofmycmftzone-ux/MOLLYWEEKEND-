@@ -33,7 +33,7 @@ let slowBurnDecks = [
 
 // Load cards
 
-fetch("Cards.json")
+fetch("cards.json")
 
 .then(response => {
 
