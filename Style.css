@@ -1,0 +1,479 @@
+body {
+
+    margin:0;
+
+    background:
+    radial-gradient(circle at top,#3b005c,#050505 65%);
+
+    color:white;
+
+    font-family:Arial,sans-serif;
+
+    height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+
+
+body::before {
+
+    content:"";
+
+    position:absolute;
+
+    width:600px;
+
+    height:600px;
+
+    background:
+    radial-gradient(circle,
+    rgba(255,0,255,.25),
+    transparent 70%);
+
+    animation:ambientMove 8s infinite alternate;
+
+    z-index:-1;
+
+}
+
+
+
+body::after {
+
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+
+    height:500px;
+
+    background:
+    radial-gradient(circle,
+    rgba(0,255,255,.15),
+    transparent 70%);
+
+    animation:ambientMove2 10s infinite alternate;
+
+    z-index:-1;
+
+}
+
+
+
+body.tame-theme {
+
+    background:
+    radial-gradient(circle at top,#003b4d,#050505 65%);
+
+}
+
+
+
+body.desire-theme {
+
+    background:
+    radial-gradient(circle at top,#5c001f,#050505 65%);
+
+}
+
+
+
+body.touch-theme {
+
+    background:
+    radial-gradient(circle at top,#3b005c,#050505 65%);
+
+}
+
+
+
+.app {
+
+    width:90%;
+
+    max-width:400px;
+
+    text-align:center;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+
+.intro-glow {
+
+    animation:pulse 3s infinite;
+
+}
+
+
+
+.neon-title {
+
+    font-size:42px;
+
+    letter-spacing:4px;
+
+    color:white;
+
+    text-shadow:
+    0 0 10px #ff00ff,
+    0 0 30px #8a00ff;
+
+}
+
+
+
+.tagline {
+
+    font-size:20px;
+
+    letter-spacing:3px;
+
+    color:#ddd;
+
+    text-shadow:
+    0 0 10px #ff00ff;
+
+    margin-top:-20px;
+
+    margin-bottom:40px;
+
+}
+
+
+
+.subtitle {
+
+    color:#ccc;
+
+    margin-bottom:35px;
+
+}
+
+
+
+.deck {
+
+    width:100%;
+
+    padding:22px;
+
+    margin:15px 0;
+
+    border-radius:20px;
+
+    background:#111;
+
+    color:white;
+
+    font-size:24px;
+
+    border:2px solid white;
+
+}
+
+
+
+.deck span {
+
+    display:block;
+
+    font-size:14px;
+
+    margin-top:8px;
+
+}
+
+
+
+.blue {
+
+    box-shadow:
+    0 0 15px #00ffff;
+
+}
+
+
+
+.red {
+
+    box-shadow:
+    0 0 15px #ff003c;
+
+}
+
+
+
+.purple {
+
+    box-shadow:
+    0 0 15px #b000ff;
+
+}
+
+
+
+.card {
+
+    background:#080808;
+
+    min-height:280px;
+
+    border-radius:25px;
+
+    padding:25px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    box-sizing:border-box;
+
+    border:2px solid #ff00ff;
+
+    animation:cardReveal .55s ease;
+
+}
+
+
+
+.tame-card {
+
+    border-color:#00ffff;
+
+    box-shadow:
+    0 0 20px #00ffff,
+    0 0 50px #008cff;
+
+}
+
+
+
+.desire-card {
+
+    border-color:#ff003c;
+
+    box-shadow:
+    0 0 20px #ff003c,
+    0 0 50px #ff0066;
+
+}
+
+
+
+.touch-card {
+
+    border-color:#b000ff;
+
+    box-shadow:
+    0 0 20px #b000ff,
+    0 0 50px #6600ff;
+
+}
+
+
+
+.purple-card {
+
+    border-color:#b000ff;
+
+    box-shadow:
+    0 0 20px #b000ff,
+    0 0 50px #ff00ff;
+
+}
+
+
+
+.card h2 {
+
+    color:#ff66ff;
+
+    text-transform:uppercase;
+
+}
+
+
+
+.card p {
+
+    font-size:20px;
+
+    line-height:1.5;
+
+}
+
+
+
+.draw {
+
+    width:100%;
+
+    padding:20px;
+
+    margin-top:20px;
+
+    border-radius:22px;
+
+    border:none;
+
+    background:#ff00ff;
+
+    color:white;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+}
+
+
+
+.back {
+
+    width:100%;
+
+    padding:16px;
+
+    margin-top:15px;
+
+    border-radius:20px;
+
+    background:#222;
+
+    color:white;
+
+    font-size:20px;
+
+}
+
+
+
+@keyframes ambientMove {
+
+    from {
+
+        transform:
+        translate(-150px,-100px)
+        scale(1);
+
+    }
+
+    to {
+
+        transform:
+        translate(150px,100px)
+        scale(1.4);
+
+    }
+
+}
+
+
+
+@keyframes ambientMove2 {
+
+    from {
+
+        transform:
+        translate(150px,150px);
+
+    }
+
+    to {
+
+        transform:
+        translate(-100px,-100px);
+
+    }
+
+}
+
+
+
+@keyframes cardReveal {
+
+    from {
+
+        opacity:0;
+
+        transform:
+        scale(.75)
+        rotate(-3deg);
+
+    }
+
+    to {
+
+        opacity:1;
+
+        transform:
+        scale(1)
+        rotate(0deg);
+
+    }
+
+}
+
+
+
+@keyframes pulse {
+
+    0% {
+
+        opacity:1;
+
+    }
+
+    50% {
+
+        opacity:.75;
+
+    }
+
+    100% {
+
+        opacity:1;
+
+    }
+
+}
+
+
+
+@keyframes cardIn {
+
+    from {
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to {
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
