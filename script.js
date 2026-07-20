@@ -1,4 +1,3 @@
-alert("Molly JavaScript is running");
 const menu = document.getElementById("menu");
 const deckIntro = document.getElementById("deckIntro");
 const game = document.getElementById("game");
