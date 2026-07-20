@@ -1,5 +1,3 @@
-// Connect HTML elements
-
 const menu = document.getElementById("menu");
 const deckIntro = document.getElementById("deckIntro");
 const game = document.getElementById("game");
@@ -12,18 +10,13 @@ const action = document.getElementById("action");
 const remaining = document.getElementById("remaining");
 
 
-// Game variables
-
 let currentDeck = "";
-
 let remainingCards = [];
-
 let cards = {};
-
 let slowBurnStage = 0;
 
 
-let slowBurnDecks = [
+const slowBurnDecks = [
     "tame",
     "desire",
     "touch"
@@ -31,15 +24,13 @@ let slowBurnDecks = [
 
 
 
-// Load cards
-
 fetch("cards.json")
 
 .then(response => {
 
     if(!response.ok){
 
-        throw new Error("Could not load Cards.json");
+        throw new Error("Cards file failed to load");
 
     }
 
@@ -51,16 +42,17 @@ fetch("cards.json")
 
     cards = data;
 
-    console.log("Cards loaded successfully!");
+    console.log("Cards loaded successfully");
 
 })
 
 .catch(error => {
 
-    console.error("CARD ERROR:", error);
+    console.error(error);
+
+    alert("Cards.json failed to load");
 
 });
-
 
 
 
@@ -71,24 +63,24 @@ function openDeck(deck){
     currentDeck = deck;
 
 
-    document.body.className="";
+    document.body.className = "";
 
 
-    if(deck==="tame" || deck==="slowburn"){
+    if(deck === "tame" || deck === "slowburn"){
 
         document.body.classList.add("tame-theme");
 
     }
 
 
-    if(deck==="desire"){
+    if(deck === "desire"){
 
         document.body.classList.add("desire-theme");
 
     }
 
 
-    if(deck==="touch"){
+    if(deck === "touch"){
 
         document.body.classList.add("touch-theme");
 
@@ -96,59 +88,48 @@ function openDeck(deck){
 
 
 
-    menu.style.display="none";
+    menu.style.display = "none";
 
-    deckIntro.style.display="block";
-
-
+    deckIntro.style.display = "block";
 
 
-    if(deck==="tame"){
 
-        deckTitle.innerHTML="🔵 TAME";
+    if(deck === "tame"){
 
-        deckDescription.innerHTML=
-        "The Spark — Conversation Starters";
+        deckTitle.innerHTML = "🔵 TAME";
+        deckDescription.innerHTML = "The Spark — Conversation Starters";
 
     }
 
 
-    if(deck==="desire"){
+    if(deck === "desire"){
 
-        deckTitle.innerHTML="🔴 DESIRE";
-
-        deckDescription.innerHTML=
-        "The Heat — Light Foreplay";
+        deckTitle.innerHTML = "🔴 DESIRE";
+        deckDescription.innerHTML = "The Heat — Light Foreplay";
 
     }
 
 
-    if(deck==="touch"){
+    if(deck === "touch"){
 
-        deckTitle.innerHTML="🟣 TOUCH ME";
-
-        deckDescription.innerHTML=
-        "The Connection — Deep Intimacy";
+        deckTitle.innerHTML = "🟣 TOUCH ME";
+        deckDescription.innerHTML = "The Connection — Deep Intimacy";
 
     }
 
 
-    if(deck==="slowburn"){
+    if(deck === "slowburn"){
 
-        deckTitle.innerHTML="🔥 SLOW BURN";
-
-        deckDescription.innerHTML=
-        "A journey from spark to connection";
+        deckTitle.innerHTML = "🔥 SLOW BURN";
+        deckDescription.innerHTML = "A Journey From Spark To Connection";
 
     }
 
 
-    if(deck==="random"){
+    if(deck === "random"){
 
-        deckTitle.innerHTML="✨ RANDOM WEEKEND";
-
-        deckDescription.innerHTML=
-        "All cards. Anything can happen.";
+        deckTitle.innerHTML = "✨ RANDOM WEEKEND";
+        deckDescription.innerHTML = "All Cards. Anything Can Happen";
 
     }
 
@@ -160,36 +141,30 @@ function openDeck(deck){
 
 function startGame(){
 
-    deckIntro.style.display="none";
+    deckIntro.style.display = "none";
 
-    game.style.display="block";
-
-
-
-    if(currentDeck==="slowburn"){
+    game.style.display = "block";
 
 
-        slowBurnStage=0;
 
+    if(currentDeck === "slowburn"){
 
-        remainingCards=[
+        slowBurnStage = 0;
 
+        remainingCards = [
             ...cards[slowBurnDecks[slowBurnStage]]
-
         ];
 
     }
 
 
-    else if(currentDeck==="random"){
+    else if(currentDeck === "random"){
 
 
-        remainingCards=[
+        remainingCards = [
 
             ...cards.tame,
-
             ...cards.desire,
-
             ...cards.touch
 
         ];
@@ -200,14 +175,13 @@ function startGame(){
     else {
 
 
-        remainingCards=[
+        remainingCards = [
 
             ...cards[currentDeck]
 
         ];
 
     }
-
 
 
     drawCard();
@@ -221,132 +195,63 @@ function startGame(){
 function drawCard(){
 
 
-    if(remainingCards.length===0){
+    if(remainingCards.length === 0){
 
+        alert("No cards left");
 
-        if(currentDeck==="slowburn"){
-
-
-            slowBurnStage++;
-
-
-            if(slowBurnStage < slowBurnDecks.length){
-
-
-                remainingCards=[
-
-                    ...cards[slowBurnDecks[slowBurnStage]]
-
-                ];
-
-
-            }
-
-            else {
-
-
-                slowBurnStage=0;
-
-
-                remainingCards=[
-
-                    ...cards[slowBurnDecks[slowBurnStage]]
-
-                ];
-
-            }
-
-        }
-
-
-
-        else if(currentDeck==="random"){
-
-
-            remainingCards=[
-
-                ...cards.tame,
-
-                ...cards.desire,
-
-                ...cards.touch
-
-            ];
-
-        }
-
-
-
-        else {
-
-
-            remainingCards=[
-
-                ...cards[currentDeck]
-
-            ];
-
-        }
-
+        return;
 
     }
 
 
 
+    let random = Math.floor(
 
-    let random=Math.floor(
-
-        Math.random()*remainingCards.length
+        Math.random() * remainingCards.length
 
     );
 
 
 
-    let card=remainingCards[random];
+    let card = remainingCards[random];
 
 
     remainingCards.splice(random,1);
 
 
 
+    category.innerHTML = card.category;
 
-    category.innerHTML=card.category;
-
-
-    action.innerHTML=card.action;
+    action.innerHTML = card.action;
 
 
-    remaining.innerHTML=
+    remaining.innerHTML =
 
-    "Cards Remaining: "
-
-    + remainingCards.length;
+    "Cards Remaining: " + remainingCards.length;
 
 
 
-
-
-    let cardElement=document.querySelector(".card");
-
+    let cardElement = document.querySelector(".card");
 
 
     cardElement.classList.remove(
 
         "tame-card",
-
         "desire-card",
-
         "touch-card",
-
         "purple-card"
 
     );
 
 
 
+    if(currentDeck === "random"){
 
-    if(currentDeck==="slowburn"){
+        cardElement.classList.add("purple-card");
 
+    }
+
+    else if(currentDeck === "slowburn"){
 
         cardElement.classList.add(
 
@@ -354,25 +259,9 @@ function drawCard(){
 
         );
 
-
     }
-
-
-    else if(currentDeck==="random"){
-
-
-        cardElement.classList.add(
-
-            "purple-card"
-
-        );
-
-
-    }
-
 
     else {
-
 
         cardElement.classList.add(
 
@@ -380,22 +269,18 @@ function drawCard(){
 
         );
 
-
     }
 
 
 
-
-    cardElement.style.animation="none";
+    cardElement.style.animation = "none";
 
 
     setTimeout(()=>{
 
-
-        cardElement.style.animation=
+        cardElement.style.animation =
 
         "cardIn .4s ease";
-
 
     },10);
 
@@ -408,17 +293,13 @@ function drawCard(){
 
 function goBack(){
 
+    menu.style.display = "block";
 
-    menu.style.display="block";
+    deckIntro.style.display = "none";
 
-
-    deckIntro.style.display="none";
-
-
-    game.style.display="none";
+    game.style.display = "none";
 
 
-    document.body.className="";
-
+    document.body.className = "";
 
 }
