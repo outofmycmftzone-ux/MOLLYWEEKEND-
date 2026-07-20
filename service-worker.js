@@ -2,11 +2,11 @@ const cacheName = "molly-weekend-v14";
 
 const filesToCache = [
     "./",
-    "./Index.html",
-    "./Style.css",
-    "./Script.js",
-    "./Cards.json",
-    "./Manifest.json"
+    "./index.html",
+    "./style.css",
+    "./script.js",
+    "./cards.json",
+    "./manifest.json"
 ];
 
 
