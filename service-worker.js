@@ -1,4 +1,4 @@
-    const cacheName = "molly-weekend-v15";
+const cacheName = "molly-weekend-v16";
 
 const filesToCache = [
     "./",
@@ -12,7 +12,7 @@ const filesToCache = [
 ];
 
 
-
+// Install and cache files
 self.addEventListener("install", event => {
 
     event.waitUntil(
@@ -25,7 +25,11 @@ self.addEventListener("install", event => {
 
         })
 
-        .then(() => self.skipWaiting())
+        .then(() => {
+
+            return self.skipWaiting();
+
+        })
 
     );
 
@@ -33,22 +37,22 @@ self.addEventListener("install", event => {
 
 
 
-
+// Remove old caches
 self.addEventListener("activate", event => {
 
     event.waitUntil(
 
         caches.keys()
 
-        .then(cacheNames => {
+        .then(keys => {
 
             return Promise.all(
 
-                cacheNames.map(cache => {
+                keys.map(key => {
 
-                    if(cache !== cacheName){
+                    if(key !== cacheName){
 
-                        return caches.delete(cache);
+                        return caches.delete(key);
 
                     }
 
@@ -66,8 +70,7 @@ self.addEventListener("activate", event => {
 
 
 
-
-
+// Serve cached files offline
 self.addEventListener("fetch", event => {
 
     event.respondWith(
