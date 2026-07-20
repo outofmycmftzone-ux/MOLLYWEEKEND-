@@ -1,4 +1,4 @@
-    const cacheName = "molly-weekend-v2";
+    const cacheName = "molly-weekend-v15";
 
 const filesToCache = [
     "./",
