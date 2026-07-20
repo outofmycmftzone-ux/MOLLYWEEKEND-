@@ -2,7 +2,7 @@
   "id": "./",
   "name": "Molly Weekend",
   "short_name": "Molly",
-  "start_url": "./index.html?v=3",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#ffffff",
