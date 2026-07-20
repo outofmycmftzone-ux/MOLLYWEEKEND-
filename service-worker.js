@@ -1,4 +1,4 @@
-const cacheName = "molly-weekend-v14";
+const cacheName = "molly-weekend-v1";
 
 const filesToCache = [
     "./",
@@ -6,7 +6,9 @@ const filesToCache = [
     "./style.css",
     "./script.js",
     "./cards.json",
-    "./manifest.json"
+    "./manifest.json",
+    "./icon-192.png",
+    "./icon-512.png"
 ];
 
 
@@ -15,7 +17,11 @@ self.addEventListener("install", event => {
     event.waitUntil(
 
         caches.open(cacheName)
-        .then(cache => cache.addAll(filesToCache))
+        .then(cache => {
+
+            return cache.addAll(filesToCache);
+
+        })
         .then(() => self.skipWaiting())
 
     );
@@ -36,7 +42,11 @@ self.addEventListener("activate", event => {
 
                 cacheNames.map(cache => {
 
-                    return caches.delete(cache);
+                    if(cache !== cacheName){
+
+                        return caches.delete(cache);
+
+                    }
 
                 })
 
@@ -60,13 +70,7 @@ self.addEventListener("fetch", event => {
 
         .then(response => {
 
-            if(response){
-
-                return response;
-
-            }
-
-            return fetch(event.request);
+            return response || fetch(event.request);
 
         })
 
