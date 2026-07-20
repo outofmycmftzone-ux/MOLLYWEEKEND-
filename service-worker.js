@@ -1,4 +1,4 @@
-const cacheName = "molly-weekend-v1";
+    const cacheName = "molly-weekend-v2";
 
 const filesToCache = [
     "./",
@@ -12,21 +12,25 @@ const filesToCache = [
 ];
 
 
+
 self.addEventListener("install", event => {
 
     event.waitUntil(
 
         caches.open(cacheName)
+
         .then(cache => {
 
             return cache.addAll(filesToCache);
 
         })
+
         .then(() => self.skipWaiting())
 
     );
 
 });
+
 
 
 
@@ -59,6 +63,8 @@ self.addEventListener("activate", event => {
     );
 
 });
+
+
 
 
 
