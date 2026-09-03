@@ -1,1293 +1,80 @@
-/* ========================= */
-/* MOLLY WEEKEND BASE */
-/* ========================= */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+}
 
 body {
-
-    margin:0;
-
-    background:
-    radial-gradient(circle at top,#3b005c,#050505 65%);
-
-    color:white;
-
-    font-family:Arial,sans-serif;
-
-    min-height:100vh;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    overflow-x:hidden;
-
-    position:relative;
-
+    font-family: Arial, Helvetica, sans-serif;
+    background: #111;
+    color: #fff;
+    overflow-x: hidden;
 }
 
-
-
-body::before {
-
-    content:"";
-
-    position:absolute;
-
-    width:600px;
-
-    height:600px;
-
-    background:
-    radial-gradient(circle,
-    rgba(255,0,255,.25),
-    transparent 70%);
-
-    animation:ambientMove 8s infinite alternate;
-
-    z-index:-1;
-
+button,
+input,
+select {
+    font-family: inherit;
 }
 
-
-
-body::after {
-
-    content:"";
-
-    position:absolute;
-
-    width:500px;
-
-    height:500px;
-
-    background:
-    radial-gradient(circle,
-    rgba(0,255,255,.15),
-    transparent 70%);
-
-    animation:ambientMove2 10s infinite alternate;
-
-    z-index:-1;
-
+button {
+    -webkit-tap-highlight-color: transparent;
 }
 
-
-
-/* ========================= */
-/* THEMES */
-/* ========================= */
-
-body.tame-theme {
-
-    background:
-    radial-gradient(circle at top,#003b4d,#050505 65%);
-
+#app {
+    width: 100%;
+    min-height: 100vh;
 }
 
-
-
-body.desire-theme {
-
-    background:
-    radial-gradient(circle at top,#5c001f,#050505 65%);
-
+#menu {
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px 15px 30px;
+    position: relative;
+    z-index: 10;
 }
 
-
-
-body.touch-theme {
-
-    background:
-    radial-gradient(circle at top,#3b005c,#050505 65%);
-
+.menu-title {
+    text-align: center;
+    margin: 10px 0 5px;
+    font-size: 32px;
+    font-weight: 800;
 }
 
-
-
-body.dice-theme {
-
-    background:
-    radial-gradient(circle at top,#3b003b,#050505 65%);
-
+.menu-subtitle {
+    text-align: center;
+    margin: 0 0 25px;
+    opacity: 0.75;
 }
-
-
-
-/* BINGO THEME */
-
-body.bingo-theme {
-
-    background:
-    radial-gradient(circle at top,#5c001f,#050505 55%);
-
-}
-
-
-
-/* ========================= */
-/* APP */
-/* ========================= */
-
-.app {
-
-    width:90%;
-
-    max-width:400px;
-
-    text-align:center;
-
-    position:relative;
-
-    z-index:2;
-
-    padding:20px 0;
-
-}
-
-
-
-/* ========================= */
-/* INTRO */
-/* ========================= */
-
-.intro-glow {
-
-    animation:pulse 3s infinite;
-
-}
-
-
-
-.neon-title {
-
-    font-size:42px;
-
-    letter-spacing:4px;
-
-    color:white;
-
-    text-shadow:
-    0 0 10px #ff00ff,
-    0 0 30px #8a00ff;
-
-}
-
-
-
-.tagline {
-
-    font-size:20px;
-
-    letter-spacing:3px;
-
-    color:#ddd;
-
-    text-shadow:
-    0 0 10px #ff00ff;
-
-    margin-top:-20px;
-
-    margin-bottom:40px;
-
-}
-
-
-
-.subtitle {
-
-    color:#ccc;
-
-    margin-bottom:35px;
-
-}
-
-
-
-/* ========================= */
-/* MENU BUTTONS */
-/* ========================= */
 
 .deck {
-
-    width:100%;
-
-    padding:22px;
-
-    margin:15px 0;
-
-    border-radius:20px;
-
-    background:#111;
-
-    color:white;
-
-    font-size:24px;
-
-    border:2px solid white;
-
-    box-sizing:border-box;
-
+    width: 100%;
+    max-width: 600px;
+    margin: 12px auto;
+    display: block;
+    padding: 20px;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: left;
+    cursor: pointer;
 }
-
-
 
 .deck span {
-
-    display:block;
-
-    font-size:14px;
-
-    margin-top:8px;
-
+    display: block;
+    margin-top: 6px;
+    font-size: 13px;
+    font-weight: 400;
+    opacity: 0.8;
 }
-
-
-
-.blue {
-
-    box-shadow:
-    0 0 15px #00ffff;
-
-}
-
-
-
-.red {
-
-    box-shadow:
-    0 0 15px #ff003c;
-
-}
-
-
-
-.purple {
-
-    box-shadow:
-    0 0 15px #b000ff;
-
-}
-
-
-
-/* DICE MENU BUTTON */
-
-.dice-button {
-
-    border-color:#ff66ff;
-
-    box-shadow:
-    0 0 15px #ff00ff,
-    0 0 35px #8a00ff;
-
-}
-
-
-
-/* BINGO MENU BUTTON */
-
-.bingo-button {
-
-    border-color:#ff5c8a;
-
-    box-shadow:
-    0 0 15px #ff3f73,
-    0 0 35px #ff003c;
-
-}
-
-
-
-/* ========================= */
-/* CARD */
-/* ========================= */
-
-.card {
-
-    background:#080808;
-
-    min-height:280px;
-
-    border-radius:25px;
-
-    padding:25px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    box-sizing:border-box;
-
-    border:2px solid #ff00ff;
-
-    animation:cardReveal .55s ease;
-
-}
-
-
-
-.tame-card {
-
-    border-color:#00ffff;
-
-    box-shadow:
-    0 0 20px #00ffff,
-    0 0 50px #008cff;
-
-}
-
-
-
-.desire-card {
-
-    border-color:#ff003c;
-
-    box-shadow:
-    0 0 20px #ff003c,
-    0 0 50px #ff0066;
-
-}
-
-
-
-.touch-card {
-
-    border-color:#b000ff;
-
-    box-shadow:
-    0 0 20px #b000ff,
-    0 0 50px #6600ff;
-
-}
-
-
-
-.purple-card {
-
-    border-color:#b000ff;
-
-    box-shadow:
-    0 0 20px #b000ff,
-    0 0 50px #ff00ff;
-
-}
-
-
-
-.card h2 {
-
-    color:#ff66ff;
-
-    text-transform:uppercase;
-
-}
-
-
-
-.card p {
-
-    font-size:20px;
-
-    line-height:1.5;
-
-}
-
-
-
-/* ========================= */
-/* GENERAL BUTTONS */
-/* ========================= */
-
-.draw {
-
-    width:100%;
-
-    padding:20px;
-
-    margin-top:20px;
-
-    border-radius:22px;
-
-    border:none;
-
-    background:#ff00ff;
-
-    color:white;
-
-    font-size:24px;
-
-    font-weight:bold;
-
-}
-
-
-
-.back {
-
-    width:100%;
-
-    padding:16px;
-
-    margin-top:15px;
-
-    border-radius:20px;
-
-    background:#222;
-
-    color:white;
-
-    font-size:20px;
-
-}
-
-
-
-/* ========================= */
-/* DICE GAME */
-/* ========================= */
-
-.dice-title {
-
-    font-size:34px;
-
-    letter-spacing:3px;
-
-    margin-top:10px;
-
-    color:white;
-
-    text-shadow:
-    0 0 10px #ff00ff,
-    0 0 25px #b000ff;
-
-}
-
-
-
-.dice-subtitle {
-
-    color:#ccc;
-
-    margin-bottom:30px;
-
-}
-.dice-container {
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:15px;
-
-    margin-bottom:25px;
-
-}
-
-
-
-.die-section {
-
-    width:130px;
-
-}
-
-
-
-.die-section h3 {
-
-    font-size:15px;
-
-    letter-spacing:2px;
-
-    margin-bottom:12px;
-
-    color:#ff66ff;
-
-}
-
-
-
-.die {
-
-    width:95px;
-
-    height:95px;
-
-    margin:auto;
-
-    border-radius:20px;
-
-    background:#111;
-
-    border:3px solid #ff00ff;
-
-    box-shadow:
-    0 0 15px #ff00ff,
-    0 0 30px #8a00ff;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:42px;
-
-    font-weight:bold;
-
-    box-sizing:border-box;
-
-}
-
-
-
-.die-section p {
-
-    min-height:45px;
-
-    margin-top:12px;
-
-    font-size:18px;
-
-    font-weight:bold;
-
-    color:white;
-
-}
-
-
-
-.plus {
-
-    font-size:30px;
-
-    color:#ff66ff;
-
-    text-shadow:
-    0 0 10px #ff00ff;
-
-}
-
-
-
-.dice-result {
-
-    min-height:70px;
-
-    padding:15px;
-
-    box-sizing:border-box;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-radius:20px;
-
-    background:#080808;
-
-    border:2px solid #ff00ff;
-
-    box-shadow:
-    0 0 15px #ff00ff;
-
-    font-size:21px;
-
-    font-weight:bold;
-
-    margin-bottom:15px;
-
-}
-
-
-
-.dice-roll-button {
-
-    margin-top:5px;
-
-}
-
-
-
-.dice-rolling {
-
-    animation:diceShake .12s infinite;
-
-}
-
-
-
-.dice-result.show {
-
-    animation:diceResult .4s ease;
-
-}
-
-
-
-/* ========================= */
-/* BINGO */
-/* ========================= */
-
-#bingoGame {
-
-    width:100%;
-
-    animation:bingoPageIn .4s ease;
-
-}
-
-
-
-.bingo-header {
-
-    margin-bottom:18px;
-
-}
-
-
-
-.bingo-title {
-
-    margin:0;
-
-    font-size:34px;
-
-    letter-spacing:2px;
-
-    color:white;
-
-    text-shadow:
-    0 0 10px #ff3f73,
-    0 0 25px #ff003c;
-
-}
-
-
-
-.bingo-subtitle {
-
-    margin:8px 0 0;
-
-    color:#d9b8c1;
-
-    font-size:16px;
-
-}
-
-
-
-.bingo-controls {
-
-    background:rgba(8,8,8,.8);
-
-    border:1px solid rgba(255,92,138,.5);
-
-    border-radius:20px;
-
-    padding:15px;
-
-    margin-bottom:15px;
-
-    box-shadow:
-    0 0 15px rgba(255,0,60,.15);
-
-}
-
-
-
-.bingo-name-row {
-
-    display:flex;
-
-    gap:8px;
-
-    margin-bottom:15px;
-
-}
-
-
-
-.bingo-name-row input {
-
-    width:50%;
-
-    min-width:0;
-
-    padding:12px;
-
-    border-radius:12px;
-
-    border:1px solid #884052;
-
-    background:#160d11;
-
-    color:white;
-
-    outline:none;
-
-    box-sizing:border-box;
-
-    font-size:15px;
-
-    text-align:center;
-
-}
-
-
-
-.bingo-name-row input:focus {
-
-    border-color:#ff5c8a;
-
-    box-shadow:
-    0 0 10px rgba(255,92,138,.4);
-
-}
-
-
-
-.bingo-name-row input::placeholder {
-
-    color:#98727d;
-
-}
-
-
-
-.bingo-section-title {
-
-    color:#ff8fab;
-
-    font-size:13px;
-
-    font-weight:bold;
-
-    text-transform:uppercase;
-
-    letter-spacing:1.5px;
-
-    margin:12px 0 9px;
-
-}
-
-
-
-.bingo-intensity {
-
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:7px;
-
-}
-
-
-
-.bingo-intensity label {
-
-    display:block;
-
-    cursor:pointer;
-
-}
-
-
-
-.bingo-intensity input {
-
-    display:none;
-
-}
-
-
-
-.bingo-intensity span {
-
-    display:block;
-
-    padding:9px 5px;
-
-    border-radius:10px;
-
-    background:#160d11;
-
-    border:1px solid #542632;
-
-    color:#d9b8c1;
-
-    font-size:13px;
-
-    transition:.2s ease;
-
-}
-
-
-
-.bingo-intensity input:checked + span {
-
-    background:#4a1f2e;
-
-    border-color:#ff5c8a;
-
-    color:white;
-
-    box-shadow:
-    0 0 10px rgba(255,92,138,.35);
-
-}
-
-
-
-#bingoSize {
-
-    width:100%;
-
-    padding:11px;
-
-    border-radius:12px;
-
-    border:1px solid #884052;
-
-    background:#160d11;
-
-    color:white;
-
-    font-size:15px;
-
-    outline:none;
-
-}
-
-
-
-.bingo-button-row {
-
-    display:flex;
-
-    gap:8px;
-
-    margin-top:15px;
-
-}
-
-
-
-.bingo-action-button,
-.bingo-reset-button {
-
-    flex:1;
-
-    padding:13px 8px;
-
-    border-radius:13px;
-
-    font-weight:bold;
-
-    font-size:14px;
-
-    cursor:pointer;
-
-}
-
-
-
-.bingo-action-button {
-
-    border:2px solid #ff5c8a;
-
-    background:#4a1f2e;
-
-    color:white;
-
-    box-shadow:
-    0 0 10px rgba(255,92,138,.25);
-
-}
-
-
-
-.bingo-reset-button {
-
-    border:1px solid #663340;
-
-    background:#21151a;
-
-    color:#d9b8c1;
-
-}
-
-
-
-.bingo-board-wrap {
-
-    width:100%;
-
-}
-
-
-
-.bingo-board {
-
-    width:100%;
-
-    display:grid;
-
-    gap:5px;
-
-    margin:0 auto;
-
-    aspect-ratio:1 / 1;
-
-}
-
-
-
-.bingo-cell {
-
-    min-width:0;
-
-    min-height:0;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    text-align:center;
-
-    padding:5px;
-
-    box-sizing:border-box;
-
-    border-radius:9px;
-
-    border:1px solid #743449;
-
-    background:#180e12;
-
-    color:#f5e6eb;
-
-    font-size:clamp(8px, 2.25vw, 12px);
-
-    line-height:1.15;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    user-select:none;
-
-    overflow:hidden;
-
-    transition:
-
-        transform .15s ease,
-
-        background .15s ease,
-
-        border-color .15s ease,
-
-        box-shadow .15s ease;
-
-}
-
-
-
-.bingo-cell:active {
-
-    transform:scale(.94);
-
-}
-
-
-
-.bingo-cell.marked {
-
-    background:#4a1f2e;
-
-    border-color:#ff5c8a;
-
-    box-shadow:
-    0 0 10px rgba(255,92,138,.35);
-
-    color:#ffb3c7;
-
-}
-
-
-
-.bingo-cell.marked::after {
-
-    content:"✓";
-
-    position:absolute;
-
-}
-
-
-
-.bingo-cell.win {
-
-    background:#713049;
-
-    border-color:#ff8fab;
-
-    box-shadow:
-    0 0 15px #ff5c8a,
-    inset 0 0 15px rgba(255,92,138,.2);
-
-    animation:bingoWinPulse .7s infinite alternate;
-
-}
-
-
-
-.bingo-status {
-
-    min-height:45px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:8px;
-
-    box-sizing:border-box;
-
-    color:#ff8fab;
-
-    font-size:17px;
-
-    font-weight:bold;
-
-    text-shadow:
-    0 0 10px rgba(255,92,138,.7);
-
-}
-
-
-
-.bingo-back {
-
-    margin-top:5px;
-
-}
-
-
-
-/* ========================= */
-/* ANIMATIONS */
-/* ========================= */
-
-@keyframes diceShake {
-
-    0% {
-
-        transform:rotate(-8deg) scale(1.05);
-
-    }
-
-    50% {
-
-        transform:rotate(8deg) scale(.95);
-
-    }
-
-    100% {
-
-        transform:rotate(-8deg) scale(1.05);
-
-    }
-
-}
-@keyframes diceResult {
-
-    from {
-
-        opacity:0;
-
-        transform:scale(.8);
-
-    }
-
-    to {
-
-        opacity:1;
-
-        transform:scale(1);
-
-    }
-
-}
-
-
-
-@keyframes ambientMove {
-
-    from {
-
-        transform:
-        translate(-150px,-100px)
-        scale(1);
-
-    }
-
-    to {
-
-        transform:
-        translate(150px,100px)
-        scale(1.4);
-
-    }
-
-}
-
-
-
-@keyframes ambientMove2 {
-
-    from {
-
-        transform:
-        translate(150px,150px);
-
-    }
-
-    to {
-
-        transform:
-        translate(-100px,-100px);
-
-    }
-
-}
-
-
-
-@keyframes cardReveal {
-
-    from {
-
-        opacity:0;
-
-        transform:
-        scale(.75)
-        rotate(-3deg);
-
-    }
-
-    to {
-
-        opacity:1;
-
-        transform:
-        scale(1)
-        rotate(0deg);
-
-    }
-
-}
-
-
-
-@keyframes pulse {
-
-    0% {
-
-        opacity:1;
-
-    }
-
-    50% {
-
-        opacity:.75;
-
-    }
-
-    100% {
-
-        opacity:1;
-
-    }
-
-}
-
-
-
-@keyframes cardIn {
-
-    from {
-
-        opacity:0;
-
-        transform:translateY(30px);
-
-    }
-
-    to {
-
-        opacity:1;
-
-        transform:translateY(0);
-
-    }
-
-}
-
-
-
-@keyframes bingoPageIn {
-
-    from {
-
-        opacity:0;
-
-        transform:translateY(15px);
-
-    }
-
-    to {
-
-        opacity:1;
-
-        transform:translateY(0);
-
-    }
-
-}
-
-
-
-@keyframes bingoWinPulse {
-
-    from {
-
-        transform:scale(1);
-
-    }
-
-    to {
-
-        transform:scale(1.04);
-
-    }
-
-}
-
-
 
 .bingo-button {
     position: relative;
@@ -1299,4 +86,342 @@ body.bingo-theme {
 #menu {
     position: relative;
     z-index: 10;
+}
+#deckIntro {
+    width: 100%;
+    min-height: 100vh;
+    padding: 25px 15px;
+    text-align: center;
+}
+
+#deckIntro h2 {
+    margin-top: 30px;
+    font-size: 30px;
+}
+
+#deckIntro p {
+    opacity: 0.8;
+    line-height: 1.5;
+}
+
+#deckIntro button {
+    margin-top: 20px;
+    padding: 14px 25px;
+    border: none;
+    border-radius: 12px;
+    background: #ff4f81;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#game {
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px 15px;
+    text-align: center;
+}
+
+#category {
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    opacity: 0.75;
+}
+
+#action {
+    width: 100%;
+    max-width: 600px;
+    min-height: 180px;
+    margin: 25px auto;
+    padding: 30px 20px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+#remaining {
+    margin: 15px 0;
+    opacity: 0.7;
+}
+
+#game button {
+    padding: 14px 25px;
+    border: none;
+    border-radius: 12px;
+    background: #ff4f81;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#diceGame {
+    width: 100%;
+    min-height: 100vh;
+    padding: 25px 15px;
+    text-align: center;
+}
+
+#diceGame h2 {
+    margin-top: 25px;
+}
+
+.dice-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 30px auto;
+}
+
+.dice-result {
+    margin: 15px 0;
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.08);
+}
+
+#diceBody,
+#diceAction {
+    display: block;
+    margin-top: 8px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#diceGame button {
+    padding: 14px 25px;
+    margin: 8px;
+    border: none;
+    border-radius: 12px;
+    background: #ff4f81;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.bingo-theme {
+    background: #1a0f14;
+}
+
+#bingoGame {
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px 14px 30px;
+}
+
+.bingo-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.bingo-title {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.bingo-subtitle {
+    margin: 8px 0 0;
+    opacity: 0.8;
+    line-height: 1.4;
+}
+
+.bingo-controls {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 20px;
+}
+
+.bingo-name-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.bingo-name-row input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.08);
+    color: white;
+    font-size: 15px;
+}
+
+.bingo-name-row input::placeholder {
+    color: rgba(255,255,255,0.6);
+}
+
+.bingo-section-title {
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.bingo-kink-section {
+    margin-bottom: 18px;
+}
+
+.bingo-kinks {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.bingo-kinks label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.bingo-kinks input {
+    width: 18px;
+    height: 18px;
+    accent-color: #ff4f81;
+}
+
+.bingo-board-size {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+#bingoSize {
+    width: 100%;
+    max-width: 220px;
+    padding: 11px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: #2a171f;
+    color: white;
+    font-size: 15px;
+}
+
+.bingo-button-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.bingo-button-row button {
+    padding: 13px 10px;
+    border: none;
+    border-radius: 10px;
+    background: #ff4f81;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.bingo-button-row .bingo-secondary {
+    background: rgba(255,255,255,0.12);
+}
+.bingo-board-wrap {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.bingo-board {
+    display: grid;
+    width: 100%;
+    gap: 5px;
+}
+
+.bingo-cell {
+    min-width: 0;
+    aspect-ratio: 1 / 1;
+    padding: 6px;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 8px;
+    background: rgba(255,255,255,0.08);
+    color: white;
+    font-size: clamp(9px, 2.6vw, 15px);
+    font-weight: 600;
+    line-height: 1.15;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+    transition: transform 0.15s ease,
+                background 0.15s ease,
+                border 0.15s ease;
+}
+
+.bingo-cell:active {
+    transform: scale(0.96);
+}
+
+.bingo-cell.marked {
+    background: rgba(255,79,129,0.45);
+    border-color: #ff4f81;
+}
+
+.bingo-cell.win {
+    background: #ff4f81;
+    border-color: white;
+    transform: scale(1.02);
+}
+
+.bingo-status {
+    min-height: 24px;
+    margin-top: 14px;
+    text-align: center;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.bingo-back {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto 0;
+    padding: 13px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.12);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+@media (max-width: 400px) {
+    #bingoGame {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .bingo-title {
+        font-size: 22px;
+    }
+
+    .bingo-kinks {
+        gap: 5px;
+    }
+
+    .bingo-kinks label {
+        padding: 8px 6px;
+        font-size: 12px;
+    }
+
+    .bingo-cell {
+        font-size: 8px;
+        padding: 4px;
+    }
 }
