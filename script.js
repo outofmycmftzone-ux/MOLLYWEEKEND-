@@ -45,80 +45,92 @@ let bingoMarked = [];
 let bingoSize = 5;
 
 const bingoTasks = {
-    sweet: [
-        "Give your partner a genuine compliment.",
-        "Tell your partner one thing you appreciate about them.",
-        "Hold hands for one minute.",
-        "Share a favorite memory together.",
-        "Give your partner a long hug.",
-        "Look into each other's eyes for 30 seconds.",
-        "Tell your partner something that always makes you smile.",
-        "Give your partner a forehead kiss.",
-        "Say three things you love about your partner.",
-        "Share something you've always wanted to do together.",
-        "Tell your partner what first attracted you to them.",
-        "Give each other a five-minute cuddle.",
-        "Take turns saying something you admire about each other.",
-        "Recreate your favorite photo together.",
-        "Dance together for one song.",
-        "Tell your partner one thing you're grateful for."
+    soft: [
+        "Kiss for 60 seconds without using hands",
+        "Slow full-body massage for 3 minutes",
+        "Whisper something dirty in their ear",
+        "Trace their lips with your finger then kiss",
+        "Hold eye contact while undressing each other slowly",
+        "Kiss every freckle/mole you can find",
+        "Give a sensual neck and shoulder massage",
+        "Feed each other something sweet with your fingers"
     ],
 
-    flirty: [
-        "Give your partner your best flirtatious smile.",
-        "Whisper something sweet in your partner's ear.",
-        "Give your partner a playful compliment.",
-        "Hold eye contact while smiling at each other.",
-        "Give your partner a kiss somewhere unexpected.",
-        "Tell your partner what outfit you love seeing them wear.",
-        "Sit close together for the next round.",
-        "Give your partner a playful nickname.",
-        "Tell your partner what makes them attractive to you.",
-        "Give each other a slow kiss.",
-        "Send your partner a flirty text while sitting beside them.",
-        "Let your partner choose where they want a kiss.",
-        "Tell your partner your favorite thing about their appearance.",
-        "Give your partner a playful challenge.",
-        "Dance closely together for one song.",
-        "Tell your partner what they do that gives you butterflies."
+    tease: [
+        "Blindfold them and tease with light touches for 2 min",
+        "Striptease for 90 seconds",
+        "Kiss everywhere except the obvious places for 3 min",
+        "Use only your breath on their skin for 60 seconds",
+        "Tease them with ice or a cold drink can",
+        "Describe exactly what you want to do next",
+        "Make them wait while you touch yourself for 1 min",
+        "Edge them with slow strokes for 2 minutes"
     ],
 
-    steamy: [
-        "Give your partner a slow kiss.",
-        "Tell your partner what makes you feel most desired.",
-        "Give your partner a lingering hug.",
-        "Whisper something romantic in their ear.",
-        "Let your partner choose a place for a kiss.",
-        "Tell your partner a romantic fantasy without acting it out.",
-        "Give your partner a slow shoulder massage.",
-        "Kiss your partner for ten seconds.",
-        "Tell your partner what kind of affection you enjoy most.",
-        "Sit facing each other and hold eye contact.",
-        "Give your partner three slow kisses.",
-        "Tell your partner something that instantly creates chemistry for you.",
-        "Let your partner choose the next romantic activity.",
-        "Give your partner a playful tease.",
-        "Tell your partner your favorite type of kiss.",
-        "Spend one minute cuddling without speaking."
+    oral: [
+        "Oral for 2 minutes, no hands",
+        "Lick and kiss inner thighs only for 90 seconds",
+        "69 position for 2 minutes",
+        "Oral while maintaining eye contact",
+        "Use only your tongue for 60 seconds",
+        "Kiss and suck their fingers one by one",
+        "Oral with a slow, teasing rhythm for 3 min",
+        "Switch who receives oral every 30 seconds"
     ],
 
-    wild: [
-        "Let your partner choose your next kiss.",
-        "Tell your partner your boldest romantic idea.",
-        "Give your partner a passionate kiss.",
-        "Let your partner choose a romantic challenge.",
-        "Tell your partner what makes you feel irresistible.",
-        "Give your partner a slow and playful massage.",
-        "Whisper your favorite romantic thought about them.",
-        "Let your partner choose where you kiss them.",
-        "Tell your partner something you've been too shy to say.",
-        "Give your partner a kiss that lasts at least ten seconds.",
-        "Take turns giving each other compliments without repeating one.",
-        "Tell your partner what creates the most tension between you.",
-        "Let your partner plan the next five minutes.",
-        "Give your partner your most seductive smile.",
-        "Tell your partner one thing you'd love to experience together.",
-        "Choose one romantic rule for the next round."
+    touch: [
+        "Mutual masturbation for 2 minutes",
+        "Hand exploration under clothes for 3 min",
+        "Grind clothed for 90 seconds",
+        "Massage with oil (or lotion) for 4 minutes",
+        "Touch only with the backs of your hands",
+        "Slow full-body caress while spooning",
+        "Pin their wrists and explore with your mouth",
+        "Use a feather or soft fabric to tease"
+    ],
+
+    toys: [
+        "Use a vibrator on them for 2 minutes",
+        "Control the toy while kissing them",
+        "Toy + oral combination for 90 seconds",
+        "Blindfold + toy teasing for 2 min",
+        "Take turns controlling the intensity",
+        "Use the toy on yourself while they watch",
+        "Toy on the outside only for 3 minutes",
+        "Remote (or timed) toy play for 2 min"
+    ],
+
+    bdsm: [
+        "Light spanking (10–15 spanks)",
+        "Blindfold them for the next 3 activities",
+        "Tie their wrists loosely with a scarf",
+        "Orgasm control / denial for 2 minutes",
+        "Hair pulling during a passionate kiss",
+        "Light biting on shoulders/neck",
+        "Command them to stay still while you touch",
+        "Use a safe word and edge them"
+    ],
+
+    role: [
+        "Roleplay: strangers meeting for the first time",
+        "Roleplay: boss & employee (keep it fun)",
+        "Act out a fantasy one of you has shared",
+        "Speak only in commands for 2 minutes",
+        "Pretend one of you is shy / inexperienced",
+        "Roleplay a scene from a favorite story",
+        "One of you is in charge for the next 5 min",
+        "Dirty talk only in character for 3 min"
+    ],
+
+    intense: [
+        "Penetration in a new position for 3 minutes",
+        "Doggy with hair pulling and dirty talk",
+        "Against the wall or on the edge of the bed",
+        "Slow deep strokes while locked in eye contact",
+        "Finish in a position of the other person’s choice",
+        "Change positions every 45 seconds for 3 min",
+        "One partner stays still, the other controls pace",
+        "Mutual climax attempt within 4 minutes"
     ]
 };
 
@@ -133,7 +145,6 @@ fetch("cards.json")
 
 function openDeck(deckName) {
     currentDeck = cards[deckName] || [];
-
     remainingCards = [...currentDeck];
 
     menu.style.display = "none";
@@ -145,22 +156,32 @@ function openDeck(deckName) {
     if (deckName === "tame") {
         deckTitle.textContent = "🔵 TAME";
         deckDescription.textContent = "The Spark — Conversation Starters";
-    } else if (deckName === "desire") {
+    } 
+    else if (deckName === "desire") {
         deckTitle.textContent = "🔴 DESIRE";
         deckDescription.textContent = "The Heat — Light Foreplay";
-    } else if (deckName === "touch") {
+    } 
+    else if (deckName === "touch") {
         deckTitle.textContent = "🟣 TOUCH ME";
         deckDescription.textContent = "The Connection — Deep Intimacy";
-    } else if (deckName === "slowBurn") {
+    } 
+    else if (deckName === "slowburn" || deckName === "slowBurn") {
         deckTitle.textContent = "🔥 SLOW BURN";
         deckDescription.textContent = "Build the tension together.";
+
         slowBurnStage = 0;
+
         currentDeck = cards.tame || [];
         remainingCards = [...currentDeck];
-    } else if (deckName === "random") {
+    } 
+    else if (deckName === "random") {
         deckTitle.textContent = "✨ RANDOM WEEKEND";
         deckDescription.textContent = "Anything can happen.";
-        currentDeck = Object.values(cards).flat();
+
+        currentDeck = Object.values(cards)
+            .filter(value => Array.isArray(value))
+            .flat();
+
         remainingCards = [...currentDeck];
     }
 }
@@ -170,6 +191,7 @@ function startGame() {
     game.style.display = "block";
 
     remaining.textContent = remainingCards.length;
+
     drawCard();
 }
 
@@ -181,8 +203,11 @@ function drawCard() {
         return;
     }
 
-    const randomIndex = Math.floor(Math.random() * remainingCards.length);
-    const card = remainingCards.splice(randomIndex, 1)[0];
+    const randomIndex =
+        Math.floor(Math.random() * remainingCards.length);
+
+    const card =
+        remainingCards.splice(randomIndex, 1)[0];
 
     category.textContent = card.category || "";
     action.textContent = card.action || card.text || card;
@@ -201,10 +226,14 @@ function openDice() {
 
 function rollDice() {
     const bodyPart =
-        diceBodyParts[Math.floor(Math.random() * diceBodyParts.length)];
+        diceBodyParts[
+            Math.floor(Math.random() * diceBodyParts.length)
+        ];
 
     const diceAction =
-        diceActions[Math.floor(Math.random() * diceActions.length)];
+        diceActions[
+            Math.floor(Math.random() * diceActions.length)
+        ];
 
     document.getElementById("diceBody").textContent = bodyPart;
     document.getElementById("diceAction").textContent = diceAction;
@@ -236,16 +265,20 @@ function closeBingo() {
     document.body.className = "";
 }
 
-function getBingoIntensity() {
-    const selected = document.querySelector(
-        'input[name="bingoIntensity"]:checked'
-    );
+function getSelectedBingoCategories() {
+    const checks =
+        document.querySelectorAll(
+            "#bingoKinkToggles input:checked"
+        );
 
-    return selected ? selected.value : "sweet";
+    return Array.from(checks).map(
+        checkbox => checkbox.value
+    );
 }
 
 function getBingoSize() {
-    const select = document.getElementById("bingoSize");
+    const select =
+        document.getElementById("bingoSize");
 
     return parseInt(select.value, 10) || 5;
 }
@@ -253,39 +286,42 @@ function getBingoSize() {
 function shuffleArray(array) {
     const shuffled = [...array];
 
-    for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
+    for (
+        let i = shuffled.length - 1;
+        i > 0;
+        i--
+    ) {
+        const j =
+            Math.floor(Math.random() * (i + 1));
 
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        [shuffled[i], shuffled[j]] =
+            [shuffled[j], shuffled[i]];
     }
 
     return shuffled;
 }
 
 function createBingoPool() {
-    const intensity = getBingoIntensity();
+    let categories =
+        getSelectedBingoCategories();
+
+    if (categories.length === 0) {
+        categories = [
+            "soft",
+            "tease",
+            "touch"
+        ];
+    }
 
     let pool = [];
 
-    if (intensity === "sweet") {
-        pool = [...bingoTasks.sweet];
-    } else if (intensity === "flirty") {
-        pool = [
-            ...bingoTasks.sweet,
-            ...bingoTasks.flirty
-        ];
-    } else if (intensity === "steamy") {
-        pool = [
-            ...bingoTasks.flirty,
-            ...bingoTasks.steamy
-        ];
-    } else if (intensity === "wild") {
-        pool = [
-            ...bingoTasks.flirty,
-            ...bingoTasks.steamy,
-            ...bingoTasks.wild
-        ];
-    }
+    categories.forEach(categoryName => {
+        if (bingoTasks[categoryName]) {
+            pool = pool.concat(
+                bingoTasks[categoryName]
+            );
+        }
+    });
 
     return shuffleArray(pool);
 }
@@ -293,54 +329,76 @@ function createBingoPool() {
 function generateBingoBoard() {
     bingoSize = getBingoSize();
 
-    const totalSquares = bingoSize * bingoSize;
+    const totalSquares =
+        bingoSize * bingoSize;
 
-    const pool = createBingoPool();
+    const pool =
+        createBingoPool();
 
     bingoBoard = [];
 
-    for (let i = 0; i < totalSquares; i++) {
+    for (
+        let i = 0;
+        i < totalSquares;
+        i++
+    ) {
         bingoBoard.push(
             pool[i % pool.length]
         );
     }
 
-    bingoMarked = new Array(totalSquares).fill(false);
+    bingoMarked =
+        new Array(totalSquares).fill(false);
 
     renderBingoBoard();
 
-    document.getElementById("bingoStatus").textContent =
+    document.getElementById(
+        "bingoStatus"
+    ).textContent =
         "Complete a row, column, or diagonal to win!";
 }
 
 function renderBingoBoard() {
-    const board = document.getElementById("bingoBoard");
+    const board =
+        document.getElementById("bingoBoard");
 
     board.innerHTML = "";
 
     board.style.gridTemplateColumns =
         `repeat(${bingoSize}, 1fr)`;
 
-    bingoBoard.forEach((task, index) => {
-        const cell = document.createElement("button");
+    bingoBoard.forEach(
+        (task, index) => {
 
-        cell.className = "bingo-cell";
-        cell.textContent = task;
+            const cell =
+                document.createElement("button");
 
-        if (bingoMarked[index]) {
-            cell.classList.add("marked");
+            cell.type = "button";
+
+            cell.className =
+                "bingo-cell";
+
+            cell.textContent = task;
+
+            if (bingoMarked[index]) {
+                cell.classList.add("marked");
+            }
+
+            cell.addEventListener(
+                "click",
+                () => {
+                    toggleBingoMark(index);
+                }
+            );
+
+            board.appendChild(cell);
         }
-
-        cell.addEventListener("click", () => {
-            toggleBingoMark(index);
-        });
-
-        board.appendChild(cell);
-    });
+    );
 }
 
 function toggleBingoMark(index) {
-    bingoMarked[index] = !bingoMarked[index];
+    bingoMarked[index] =
+        !bingoMarked[index];
 
     renderBingoBoard();
 
@@ -350,32 +408,56 @@ function toggleBingoMark(index) {
 }
 
 function resetBingoMarks() {
-    bingoMarked = new Array(bingoBoard.length).fill(false);
+    bingoMarked =
+        new Array(bingoBoard.length)
+            .fill(false);
 
     renderBingoBoard();
 
-    document.getElementById("bingoStatus").textContent =
+    document.getElementById(
+        "bingoStatus"
+    ).textContent =
         "Complete a row, column, or diagonal to win!";
 }
 function checkBingoWin() {
     const size = bingoSize;
     const lines = [];
 
-    for (let row = 0; row < size; row++) {
+    for (
+        let row = 0;
+        row < size;
+        row++
+    ) {
         const line = [];
 
-        for (let column = 0; column < size; column++) {
-            line.push(row * size + column);
+        for (
+            let column = 0;
+            column < size;
+            column++
+        ) {
+            line.push(
+                row * size + column
+            );
         }
 
         lines.push(line);
     }
 
-    for (let column = 0; column < size; column++) {
+    for (
+        let column = 0;
+        column < size;
+        column++
+    ) {
         const line = [];
 
-        for (let row = 0; row < size; row++) {
-            line.push(row * size + column);
+        for (
+            let row = 0;
+            row < size;
+            row++
+        ) {
+            line.push(
+                row * size + column
+            );
         }
 
         lines.push(line);
@@ -383,29 +465,47 @@ function checkBingoWin() {
 
     const diagonalOne = [];
 
-    for (let i = 0; i < size; i++) {
-        diagonalOne.push(i * size + i);
+    for (
+        let i = 0;
+        i < size;
+        i++
+    ) {
+        diagonalOne.push(
+            i * size + i
+        );
     }
 
     lines.push(diagonalOne);
 
     const diagonalTwo = [];
 
-    for (let i = 0; i < size; i++) {
-        diagonalTwo.push(i * size + (size - 1 - i));
+    for (
+        let i = 0;
+        i < size;
+        i++
+    ) {
+        diagonalTwo.push(
+            i * size + (size - 1 - i)
+        );
     }
 
     lines.push(diagonalTwo);
 
-    const winningLine = lines.find(line =>
-        line.every(index => bingoMarked[index])
-    );
+    const winningLine =
+        lines.find(line =>
+            line.every(
+                index => bingoMarked[index]
+            )
+        );
 
     if (!winningLine) {
         return;
     }
 
-    const cells = document.querySelectorAll(".bingo-cell");
+    const cells =
+        document.querySelectorAll(
+            ".bingo-cell"
+        );
 
     winningLine.forEach(index => {
         if (cells[index]) {
@@ -414,14 +514,20 @@ function checkBingoWin() {
     });
 
     const name1 =
-        document.getElementById("bingoName1").value.trim() ||
+        document.getElementById(
+            "bingoName1"
+        ).value.trim() ||
         "Partner 1";
 
     const name2 =
-        document.getElementById("bingoName2").value.trim() ||
+        document.getElementById(
+            "bingoName2"
+        ).value.trim() ||
         "Partner 2";
 
-    document.getElementById("bingoStatus").innerHTML =
+    document.getElementById(
+        "bingoStatus"
+    ).innerHTML =
         `🎉 BINGO! ${name1} & ${name2} win!`;
 }
 
