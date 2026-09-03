@@ -27,28 +27,22 @@ let slowBurnStage = 0;
 */
 
 const diceActions = [
-
-    "ACTION 1",
-    "ACTION 2",
-    "ACTION 3",
-    "ACTION 4",
-    "ACTION 5",
-    "ACTION 6"
-
+    "Kiss",
+    "Lick",
+    "Suck",
+    "Bite",
+    "Caress",
+    "Your Choice"
 ];
-
 
 const diceBodyParts = [
-
-    "BODY PART 1",
-    "BODY PART 2",
-    "BODY PART 3",
-    "BODY PART 4",
-    "BODY PART 5",
-    "BODY PART 6"
-
+    "Lips",
+    "Stomach",
+    "Nipples",
+    "Cock/Pussy",
+    "Butt",
+    "Your Choice"
 ];
-
 
 
 const slowBurnDecks = [
