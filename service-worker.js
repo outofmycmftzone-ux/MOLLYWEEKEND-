@@ -1,4 +1,4 @@
-const cacheName = "molly-weekend-v22";
+const cacheName = "molly-weekend-v23";
 
 const filesToCache = [
     "./",
@@ -11,78 +11,33 @@ const filesToCache = [
     "./icon-512.png"
 ];
 
-
-// Install and cache files
 self.addEventListener("install", event => {
-
     event.waitUntil(
-
         caches.open(cacheName)
-
-        .then(cache => {
-
-            return cache.addAll(filesToCache);
-
-        })
-
-        .then(() => {
-
-            return self.skipWaiting();
-
-        })
-
+            .then(cache => cache.addAll(filesToCache))
+            .then(() => self.skipWaiting())
     );
-
 });
 
-
-
-// Remove old caches
 self.addEventListener("activate", event => {
-
     event.waitUntil(
-
         caches.keys()
-
-        .then(keys => {
-
-            return Promise.all(
-
-                keys.map(key => {
-
-                    if(key !== cacheName){
-
-                        return caches.delete(key);
-
-                    }
-
-                })
-
-            );
-
-        })
-
-        .then(() => self.clients.claim())
-
+            .then(keys =>
+                Promise.all(
+                    keys.map(key => {
+                        if (key !== cacheName) {
+                            return caches.delete(key);
+                        }
+                    })
+                )
+            )
+            .then(() => self.clients.claim())
     );
-
 });
 
-
-
-// Serve cached files offline
 self.addEventListener("fetch", event => {
-
     event.respondWith(
-
         caches.match(event.request)
-
-        .then(response => {
-
-            return response || fetch(event.request);
-
-        })
-
+            .then(response => response || fetch(event.request))
     );
-
 });
