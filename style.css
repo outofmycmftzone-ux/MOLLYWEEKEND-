@@ -9,7 +9,7 @@ body {
 
     font-family:Arial,sans-serif;
 
-    height:100vh;
+    min-height:100vh;
 
     display:flex;
 
@@ -17,7 +17,7 @@ body {
 
     align-items:center;
 
-    overflow:hidden;
+    overflow-x:hidden;
 
     position:relative;
 
@@ -98,6 +98,15 @@ body.touch-theme {
 
 
 
+body.dice-theme {
+
+    background:
+    radial-gradient(circle at top,#3b003b,#050505 65%);
+
+}
+
+
+
 .app {
 
     width:90%;
@@ -109,6 +118,8 @@ body.touch-theme {
     position:relative;
 
     z-index:2;
+
+    padding:20px 0;
 
 }
 
@@ -185,6 +196,8 @@ body.touch-theme {
 
     border:2px solid white;
 
+    box-sizing:border-box;
+
 }
 
 
@@ -223,6 +236,20 @@ body.touch-theme {
 
     box-shadow:
     0 0 15px #b000ff;
+
+}
+
+
+
+/* DICE MENU BUTTON */
+
+.dice-button {
+
+    border-color:#ff66ff;
+
+    box-shadow:
+    0 0 15px #ff00ff,
+    0 0 35px #8a00ff;
 
 }
 
@@ -361,6 +388,242 @@ body.touch-theme {
     color:white;
 
     font-size:20px;
+
+}
+
+
+
+/* ========================= */
+/* DICE GAME */
+/* ========================= */
+
+.dice-title {
+
+    font-size:34px;
+
+    letter-spacing:3px;
+
+    margin-top:10px;
+
+    color:white;
+
+    text-shadow:
+    0 0 10px #ff00ff,
+    0 0 25px #b000ff;
+
+}
+
+
+
+.dice-subtitle {
+
+    color:#ccc;
+
+    margin-bottom:30px;
+
+}
+
+
+
+.dice-container {
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:15px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.die-section {
+
+    width:130px;
+
+}
+
+
+
+.die-section h3 {
+
+    font-size:15px;
+
+    letter-spacing:2px;
+
+    margin-bottom:12px;
+
+    color:#ff66ff;
+
+}
+
+
+
+.die {
+
+    width:95px;
+
+    height:95px;
+
+    margin:auto;
+
+    border-radius:20px;
+
+    background:#111;
+
+    border:3px solid #ff00ff;
+
+    box-shadow:
+    0 0 15px #ff00ff,
+    0 0 30px #8a00ff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:42px;
+
+    font-weight:bold;
+
+    box-sizing:border-box;
+
+}
+
+
+
+.die-section p {
+
+    min-height:45px;
+
+    margin-top:12px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    color:white;
+
+}
+
+
+
+.plus {
+
+    font-size:30px;
+
+    color:#ff66ff;
+
+    text-shadow:
+    0 0 10px #ff00ff;
+
+}
+
+
+
+.dice-result {
+
+    min-height:70px;
+
+    padding:15px;
+
+    box-sizing:border-box;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:20px;
+
+    background:#080808;
+
+    border:2px solid #ff00ff;
+
+    box-shadow:
+    0 0 15px #ff00ff;
+
+    font-size:21px;
+
+    font-weight:bold;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.dice-roll-button {
+
+    margin-top:5px;
+
+}
+
+
+
+.dice-rolling {
+
+    animation:diceShake .12s infinite;
+
+}
+
+
+
+.dice-result.show {
+
+    animation:diceResult .4s ease;
+
+}
+
+
+
+@keyframes diceShake {
+
+    0% {
+
+        transform:rotate(-8deg) scale(1.05);
+
+    }
+
+    50% {
+
+        transform:rotate(8deg) scale(.95);
+
+    }
+
+    100% {
+
+        transform:rotate(-8deg) scale(1.05);
+
+    }
+
+}
+
+
+
+@keyframes diceResult {
+
+    from {
+
+        opacity:0;
+
+        transform:scale(.8);
+
+    }
+
+    to {
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
 
 }
 
