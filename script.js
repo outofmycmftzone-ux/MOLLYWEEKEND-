@@ -2,7 +2,6 @@ const menu = document.getElementById("menu");
 const deckIntro = document.getElementById("deckIntro");
 const game = document.getElementById("game");
 const diceGame = document.getElementById("diceGame");
-const bingoGame = document.getElementById("bingoGame");
 
 const deckTitle = document.getElementById("deckTitle");
 const deckDescription = document.getElementById("deckDescription");
@@ -11,10 +10,30 @@ const category = document.getElementById("category");
 const action = document.getElementById("action");
 const remaining = document.getElementById("remaining");
 
-let currentDeck = [];
+
+let currentDeck = "";
 let remainingCards = [];
 let cards = {};
 let slowBurnStage = 0;
+
+
+/* ========================= */
+/* DICE GAME DATA */
+/* ========================= */
+/*
+   REPLACE THESE SIX ITEMS
+   WITH YOUR OWN ACTIONS
+   AND BODY PARTS LATER.
+*/
+
+const diceActions = [
+    "Kiss",
+    "Lick",
+    "Suck",
+    "Bite",
+    "Caress",
+    "Your Choice"
+];
 
 const diceBodyParts = [
     "Lips",
@@ -25,518 +44,492 @@ const diceBodyParts = [
     "Your Choice"
 ];
 
-const diceActions = [
-    "Kiss",
-    "Touch",
-    "Caress",
-    "Massage",
-    "Tease",
-    "Your Choice"
-];
 
 const slowBurnDecks = [
+
     "tame",
     "desire",
     "touch"
+
 ];
 
-let bingoBoard = [];
-let bingoMarked = [];
-let bingoSize = 5;
 
-const bingoTasks = {
-    soft: [
-        "Kiss for 60 seconds without using hands",
-        "Slow full-body massage for 3 minutes",
-        "Whisper something dirty in their ear",
-        "Trace their lips with your finger then kiss",
-        "Hold eye contact while undressing each other slowly",
-        "Kiss every freckle/mole you can find",
-        "Give a sensual neck and shoulder massage",
-        "Feed each other something sweet with your fingers"
-    ],
 
-    tease: [
-        "Blindfold them and tease with light touches for 2 min",
-        "Striptease for 90 seconds",
-        "Kiss everywhere except the obvious places for 3 min",
-        "Use only your breath on their skin for 60 seconds",
-        "Tease them with ice or a cold drink can",
-        "Describe exactly what you want to do next",
-        "Make them wait while you touch yourself for 1 min",
-        "Edge them with slow strokes for 2 minutes"
-    ],
-
-    oral: [
-        "Oral for 2 minutes, no hands",
-        "Lick and kiss inner thighs only for 90 seconds",
-        "69 position for 2 minutes",
-        "Oral while maintaining eye contact",
-        "Use only your tongue for 60 seconds",
-        "Kiss and suck their fingers one by one",
-        "Oral with a slow, teasing rhythm for 3 min",
-        "Switch who receives oral every 30 seconds"
-    ],
-
-    touch: [
-        "Mutual masturbation for 2 minutes",
-        "Hand exploration under clothes for 3 min",
-        "Grind clothed for 90 seconds",
-        "Massage with oil (or lotion) for 4 minutes",
-        "Touch only with the backs of your hands",
-        "Slow full-body caress while spooning",
-        "Pin their wrists and explore with your mouth",
-        "Use a feather or soft fabric to tease"
-    ],
-
-    toys: [
-        "Use a vibrator on them for 2 minutes",
-        "Control the toy while kissing them",
-        "Toy + oral combination for 90 seconds",
-        "Blindfold + toy teasing for 2 min",
-        "Take turns controlling the intensity",
-        "Use the toy on yourself while they watch",
-        "Toy on the outside only for 3 minutes",
-        "Remote (or timed) toy play for 2 min"
-    ],
-
-    bdsm: [
-        "Light spanking (10–15 spanks)",
-        "Blindfold them for the next 3 activities",
-        "Tie their wrists loosely with a scarf",
-        "Orgasm control / denial for 2 minutes",
-        "Hair pulling during a passionate kiss",
-        "Light biting on shoulders/neck",
-        "Command them to stay still while you touch",
-        "Use a safe word and edge them"
-    ],
-
-    role: [
-        "Roleplay: strangers meeting for the first time",
-        "Roleplay: boss & employee (keep it fun)",
-        "Act out a fantasy one of you has shared",
-        "Speak only in commands for 2 minutes",
-        "Pretend one of you is shy / inexperienced",
-        "Roleplay a scene from a favorite story",
-        "One of you is in charge for the next 5 min",
-        "Dirty talk only in character for 3 min"
-    ],
-
-    intense: [
-        "Penetration in a new position for 3 minutes",
-        "Doggy with hair pulling and dirty talk",
-        "Against the wall or on the edge of the bed",
-        "Slow deep strokes while locked in eye contact",
-        "Finish in a position of the other person’s choice",
-        "Change positions every 45 seconds for 3 min",
-        "One partner stays still, the other controls pace",
-        "Mutual climax attempt within 4 minutes"
-    ]
-};
+/* ========================= */
+/* LOAD CARDS */
+/* ========================= */
 
 fetch("cards.json")
-    .then(response => response.json())
-    .then(data => {
-        cards = data;
-    })
-    .catch(error => {
-        console.error("Error loading cards:", error);
-    });
 
-function openDeck(deckName) {
-    currentDeck = cards[deckName] || [];
-    remainingCards = [...currentDeck];
+.then(response => {
+
+    if(!response.ok){
+
+        throw new Error("Cards file failed to load");
+
+    }
+
+    return response.json();
+
+})
+
+.then(data => {
+
+    cards = data;
+
+    console.log("Cards loaded successfully");
+
+})
+
+.catch(error => {
+
+    console.error(error);
+
+    alert("Cards.json failed to load");
+
+});
+
+
+
+
+
+/* ========================= */
+/* OPEN CARD DECK */
+/* ========================= */
+
+function openDeck(deck){
+
+    currentDeck = deck;
+
+
+    document.body.className = "";
+
+
+    if(deck === "tame" || deck === "slowburn"){
+
+        document.body.classList.add("tame-theme");
+
+    }
+
+
+    if(deck === "desire"){
+
+        document.body.classList.add("desire-theme");
+
+    }
+
+
+    if(deck === "touch"){
+
+        document.body.classList.add("touch-theme");
+
+    }
+
+
 
     menu.style.display = "none";
-    bingoGame.style.display = "none";
-    diceGame.style.display = "none";
-    game.style.display = "none";
+
     deckIntro.style.display = "block";
 
-    if (deckName === "tame") {
-        deckTitle.textContent = "🔵 TAME";
-        deckDescription.textContent = "The Spark — Conversation Starters";
-    } 
-    else if (deckName === "desire") {
-        deckTitle.textContent = "🔴 DESIRE";
-        deckDescription.textContent = "The Heat — Light Foreplay";
-    } 
-    else if (deckName === "touch") {
-        deckTitle.textContent = "🟣 TOUCH ME";
-        deckDescription.textContent = "The Connection — Deep Intimacy";
-    } 
-    else if (deckName === "slowburn" || deckName === "slowBurn") {
-        deckTitle.textContent = "🔥 SLOW BURN";
-        deckDescription.textContent = "Build the tension together.";
+    game.style.display = "none";
+
+    diceGame.style.display = "none";
+
+
+
+    if(deck === "tame"){
+
+        deckTitle.innerHTML = "🔵 TAME";
+
+        deckDescription.innerHTML =
+        "The Spark — Conversation Starters";
+
+    }
+
+
+    if(deck === "desire"){
+
+        deckTitle.innerHTML = "🔴 DESIRE";
+
+        deckDescription.innerHTML =
+        "The Heat — Light Foreplay";
+
+    }
+
+
+    if(deck === "touch"){
+
+        deckTitle.innerHTML = "🟣 TOUCH ME";
+
+        deckDescription.innerHTML =
+        "The Connection — Deep Intimacy";
+
+    }
+
+
+    if(deck === "slowburn"){
+
+        deckTitle.innerHTML = "🔥 SLOW BURN";
+
+        deckDescription.innerHTML =
+        "A Journey From Spark To Connection";
+
+    }
+
+
+    if(deck === "random"){
+
+        deckTitle.innerHTML = "✨ RANDOM WEEKEND";
+
+        deckDescription.innerHTML =
+        "All Cards. Anything Can Happen";
+
+    }
+
+}
+
+
+
+
+
+/* ========================= */
+/* START CARD GAME */
+/* ========================= */
+
+function startGame(){
+
+    deckIntro.style.display = "none";
+
+    game.style.display = "block";
+
+
+
+    if(currentDeck === "slowburn"){
 
         slowBurnStage = 0;
 
-        currentDeck = cards.tame || [];
-        remainingCards = [...currentDeck];
-    } 
-    else if (deckName === "random") {
-        deckTitle.textContent = "✨ RANDOM WEEKEND";
-        deckDescription.textContent = "Anything can happen.";
+        remainingCards = [
 
-        currentDeck = Object.values(cards)
-            .filter(value => Array.isArray(value))
-            .flat();
+            ...cards[slowBurnDecks[slowBurnStage]]
 
-        remainingCards = [...currentDeck];
+        ];
+
     }
-}
 
-function startGame() {
-    deckIntro.style.display = "none";
-    game.style.display = "block";
 
-    remaining.textContent = remainingCards.length;
+    else if(currentDeck === "random"){
+
+        remainingCards = [
+
+            ...cards.tame,
+            ...cards.desire,
+            ...cards.touch
+
+        ];
+
+    }
+
+
+    else {
+
+        remainingCards = [
+
+            ...cards[currentDeck]
+
+        ];
+
+    }
+
 
     drawCard();
+
 }
 
-function drawCard() {
-    if (remainingCards.length === 0) {
-        action.textContent = "You've completed this deck!";
-        category.textContent = "";
-        remaining.textContent = "0";
+
+
+
+
+/* ========================= */
+/* DRAW CARD */
+/* ========================= */
+
+function drawCard(){
+
+
+    if(remainingCards.length === 0){
+
+        alert("No cards left");
+
         return;
+
     }
 
-    const randomIndex =
-        Math.floor(Math.random() * remainingCards.length);
 
-    const card =
-        remainingCards.splice(randomIndex, 1)[0];
 
-    category.textContent = card.category || "";
-    action.textContent = card.action || card.text || card;
+    let random = Math.floor(
 
-    remaining.textContent = remainingCards.length;
+        Math.random() * remainingCards.length
+
+    );
+
+
+
+    let card = remainingCards[random];
+
+
+    remainingCards.splice(random,1);
+
+
+
+    category.innerHTML = card.category;
+
+    action.innerHTML = card.action;
+
+
+    remaining.innerHTML =
+
+    "Cards Remaining: " + remainingCards.length;
+
+
+
+    let cardElement =
+    document.querySelector(".card");
+
+
+    cardElement.classList.remove(
+
+        "tame-card",
+        "desire-card",
+        "touch-card",
+        "purple-card"
+
+    );
+
+
+
+    if(currentDeck === "random"){
+
+        cardElement.classList.add("purple-card");
+
+    }
+
+    else if(currentDeck === "slowburn"){
+
+        cardElement.classList.add(
+
+            slowBurnDecks[slowBurnStage] + "-card"
+
+        );
+
+    }
+
+    else {
+
+        cardElement.classList.add(
+
+            currentDeck + "-card"
+
+        );
+
+    }
+
+
+
+    cardElement.style.animation = "none";
+
+
+    setTimeout(()=>{
+
+        cardElement.style.animation =
+
+        "cardIn .4s ease";
+
+    },10);
+
 }
-function openDice() {
+
+
+
+
+
+/* ========================= */
+/* OPEN DICE GAME */
+/* ========================= */
+
+function openDice(){
+
+    currentDeck = "";
+
     menu.style.display = "none";
+
     deckIntro.style.display = "none";
+
     game.style.display = "none";
-    bingoGame.style.display = "none";
+
     diceGame.style.display = "block";
 
     document.body.className = "dice-theme";
+
+
+    document.getElementById("actionDie").innerHTML = "1";
+
+    document.getElementById("bodyDie").innerHTML = "1";
+
+    document.getElementById("diceAction").innerHTML = "Ready?";
+
+    document.getElementById("diceBody").innerHTML = "Ready?";
+
+    document.getElementById("diceResult").innerHTML =
+    "Roll the dice!";
+
 }
 
-function rollDice() {
-    const bodyPart =
-        diceBodyParts[
-            Math.floor(Math.random() * diceBodyParts.length)
-        ];
 
-    const diceAction =
-        diceActions[
-            Math.floor(Math.random() * diceActions.length)
-        ];
 
-    document.getElementById("diceBody").textContent = bodyPart;
-    document.getElementById("diceAction").textContent = diceAction;
+
+
+/* ========================= */
+/* ROLL DICE */
+/* ========================= */
+
+function rollDice(){
+
+    const actionDie =
+    document.getElementById("actionDie");
+
+    const bodyDie =
+    document.getElementById("bodyDie");
+
+    const diceResult =
+    document.getElementById("diceResult");
+
+
+    actionDie.classList.add("dice-rolling");
+
+    bodyDie.classList.add("dice-rolling");
+
+
+    diceResult.classList.remove("show");
+
+
+
+    let rollTime = 1000;
+
+
+    let animation = setInterval(function(){
+
+        actionDie.innerHTML =
+        Math.floor(Math.random() * 6) + 1;
+
+        bodyDie.innerHTML =
+        Math.floor(Math.random() * 6) + 1;
+
+    },100);
+
+
+
+    setTimeout(function(){
+
+        clearInterval(animation);
+
+
+        actionDie.classList.remove("dice-rolling");
+
+        bodyDie.classList.remove("dice-rolling");
+
+
+
+        let actionRoll =
+        Math.floor(Math.random() * 6);
+
+
+        let bodyRoll =
+        Math.floor(Math.random() * 6);
+
+
+
+        actionDie.innerHTML =
+        actionRoll + 1;
+
+
+        bodyDie.innerHTML =
+        bodyRoll + 1;
+
+
+
+        let selectedAction =
+        diceActions[actionRoll];
+
+
+        let selectedBody =
+        diceBodyParts[bodyRoll];
+
+
+
+        document.getElementById("diceAction").innerHTML =
+        selectedAction;
+
+
+        document.getElementById("diceBody").innerHTML =
+        selectedBody;
+
+
+
+        diceResult.innerHTML =
+
+        selectedAction +
+        " + " +
+        selectedBody;
+
+
+
+        diceResult.classList.add("show");
+
+
+    },rollTime);
+
 }
 
-function closeDice() {
+
+
+
+
+/* ========================= */
+/* CLOSE DICE */
+/* ========================= */
+
+function closeDice(){
+
     diceGame.style.display = "none";
+
     menu.style.display = "block";
 
-    document.body.className = "";
-}
-
-function openBingo() {
-    menu.style.display = "none";
     deckIntro.style.display = "none";
+
     game.style.display = "none";
-    diceGame.style.display = "none";
-    bingoGame.style.display = "block";
-
-    document.body.className = "bingo-theme";
-
-    generateBingoBoard();
-}
-
-function closeBingo() {
-    bingoGame.style.display = "none";
-    menu.style.display = "block";
 
     document.body.className = "";
+
 }
 
-function getSelectedBingoCategories() {
-    const checks =
-        document.querySelectorAll(
-            "#bingoKinkToggles input:checked"
-        );
 
-    return Array.from(checks).map(
-        checkbox => checkbox.value
-    );
-}
 
-function getBingoSize() {
-    const select =
-        document.getElementById("bingoSize");
 
-    return parseInt(select.value, 10) || 5;
-}
 
-function shuffleArray(array) {
-    const shuffled = [...array];
+/* ========================= */
+/* BACK BUTTON */
+/* ========================= */
 
-    for (
-        let i = shuffled.length - 1;
-        i > 0;
-        i--
-    ) {
-        const j =
-            Math.floor(Math.random() * (i + 1));
+function goBack(){
 
-        [shuffled[i], shuffled[j]] =
-            [shuffled[j], shuffled[i]];
-    }
-
-    return shuffled;
-}
-
-function createBingoPool() {
-    let categories =
-        getSelectedBingoCategories();
-
-    if (categories.length === 0) {
-        categories = [
-            "soft",
-            "tease",
-            "touch"
-        ];
-    }
-
-    let pool = [];
-
-    categories.forEach(categoryName => {
-        if (bingoTasks[categoryName]) {
-            pool = pool.concat(
-                bingoTasks[categoryName]
-            );
-        }
-    });
-
-    return shuffleArray(pool);
-}
-
-function generateBingoBoard() {
-    bingoSize = getBingoSize();
-
-    const totalSquares =
-        bingoSize * bingoSize;
-
-    const pool =
-        createBingoPool();
-
-    bingoBoard = [];
-
-    for (
-        let i = 0;
-        i < totalSquares;
-        i++
-    ) {
-        bingoBoard.push(
-            pool[i % pool.length]
-        );
-    }
-
-    bingoMarked =
-        new Array(totalSquares).fill(false);
-
-    renderBingoBoard();
-
-    document.getElementById(
-        "bingoStatus"
-    ).textContent =
-        "Complete a row, column, or diagonal to win!";
-}
-
-function renderBingoBoard() {
-    const board =
-        document.getElementById("bingoBoard");
-
-    board.innerHTML = "";
-
-    board.style.gridTemplateColumns =
-        `repeat(${bingoSize}, 1fr)`;
-
-    bingoBoard.forEach(
-        (task, index) => {
-
-            const cell =
-                document.createElement("button");
-
-            cell.type = "button";
-
-            cell.className =
-                "bingo-cell";
-
-            cell.textContent = task;
-
-            if (bingoMarked[index]) {
-                cell.classList.add("marked");
-            }
-
-            cell.addEventListener(
-                "click",
-                () => {
-                    toggleBingoMark(index);
-                }
-            );
-
-            board.appendChild(cell);
-        }
-    );
-}
-
-function toggleBingoMark(index) {
-    bingoMarked[index] =
-        !bingoMarked[index];
-
-    renderBingoBoard();
-
-    if (bingoMarked[index]) {
-        checkBingoWin();
-    }
-}
-
-function resetBingoMarks() {
-    bingoMarked =
-        new Array(bingoBoard.length)
-            .fill(false);
-
-    renderBingoBoard();
-
-    document.getElementById(
-        "bingoStatus"
-    ).textContent =
-        "Complete a row, column, or diagonal to win!";
-}
-function checkBingoWin() {
-    const size = bingoSize;
-    const lines = [];
-
-    for (
-        let row = 0;
-        row < size;
-        row++
-    ) {
-        const line = [];
-
-        for (
-            let column = 0;
-            column < size;
-            column++
-        ) {
-            line.push(
-                row * size + column
-            );
-        }
-
-        lines.push(line);
-    }
-
-    for (
-        let column = 0;
-        column < size;
-        column++
-    ) {
-        const line = [];
-
-        for (
-            let row = 0;
-            row < size;
-            row++
-        ) {
-            line.push(
-                row * size + column
-            );
-        }
-
-        lines.push(line);
-    }
-
-    const diagonalOne = [];
-
-    for (
-        let i = 0;
-        i < size;
-        i++
-    ) {
-        diagonalOne.push(
-            i * size + i
-        );
-    }
-
-    lines.push(diagonalOne);
-
-    const diagonalTwo = [];
-
-    for (
-        let i = 0;
-        i < size;
-        i++
-    ) {
-        diagonalTwo.push(
-            i * size + (size - 1 - i)
-        );
-    }
-
-    lines.push(diagonalTwo);
-
-    const winningLine =
-        lines.find(line =>
-            line.every(
-                index => bingoMarked[index]
-            )
-        );
-
-    if (!winningLine) {
-        return;
-    }
-
-    const cells =
-        document.querySelectorAll(
-            ".bingo-cell"
-        );
-
-    winningLine.forEach(index => {
-        if (cells[index]) {
-            cells[index].classList.add("win");
-        }
-    });
-
-    const name1 =
-        document.getElementById(
-            "bingoName1"
-        ).value.trim() ||
-        "Partner 1";
-
-    const name2 =
-        document.getElementById(
-            "bingoName2"
-        ).value.trim() ||
-        "Partner 2";
-
-    document.getElementById(
-        "bingoStatus"
-    ).innerHTML =
-        `🎉 BINGO! ${name1} & ${name2} win!`;
-}
-
-function goBack() {
     menu.style.display = "block";
+
     deckIntro.style.display = "none";
+
     game.style.display = "none";
+
     diceGame.style.display = "none";
-    bingoGame.style.display = "none";
 
     document.body.className = "";
+
 }
