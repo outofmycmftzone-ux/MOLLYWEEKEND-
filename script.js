@@ -1,6 +1,7 @@
 const menu = document.getElementById("menu");
 const deckIntro = document.getElementById("deckIntro");
 const game = document.getElementById("game");
+const diceGame = document.getElementById("diceGame");
 
 const deckTitle = document.getElementById("deckTitle");
 const deckDescription = document.getElementById("deckDescription");
@@ -16,13 +17,53 @@ let cards = {};
 let slowBurnStage = 0;
 
 
-const slowBurnDecks = [
-    "tame",
-    "desire",
-    "touch"
+/* ========================= */
+/* DICE GAME DATA */
+/* ========================= */
+/*
+   REPLACE THESE SIX ITEMS
+   WITH YOUR OWN ACTIONS
+   AND BODY PARTS LATER.
+*/
+
+const diceActions = [
+
+    "ACTION 1",
+    "ACTION 2",
+    "ACTION 3",
+    "ACTION 4",
+    "ACTION 5",
+    "ACTION 6"
+
 ];
 
 
+const diceBodyParts = [
+
+    "BODY PART 1",
+    "BODY PART 2",
+    "BODY PART 3",
+    "BODY PART 4",
+    "BODY PART 5",
+    "BODY PART 6"
+
+];
+
+
+
+const slowBurnDecks = [
+
+    "tame",
+    "desire",
+    "touch"
+
+];
+
+
+
+/* ========================= */
+/* LOAD CARDS */
+/* ========================= */
 
 fetch("cards.json")
 
@@ -58,6 +99,10 @@ fetch("cards.json")
 
 
 
+/* ========================= */
+/* OPEN CARD DECK */
+/* ========================= */
+
 function openDeck(deck){
 
     currentDeck = deck;
@@ -92,12 +137,18 @@ function openDeck(deck){
 
     deckIntro.style.display = "block";
 
+    game.style.display = "none";
+
+    diceGame.style.display = "none";
+
 
 
     if(deck === "tame"){
 
         deckTitle.innerHTML = "🔵 TAME";
-        deckDescription.innerHTML = "The Spark — Conversation Starters";
+
+        deckDescription.innerHTML =
+        "The Spark — Conversation Starters";
 
     }
 
@@ -105,7 +156,9 @@ function openDeck(deck){
     if(deck === "desire"){
 
         deckTitle.innerHTML = "🔴 DESIRE";
-        deckDescription.innerHTML = "The Heat — Light Foreplay";
+
+        deckDescription.innerHTML =
+        "The Heat — Light Foreplay";
 
     }
 
@@ -113,7 +166,9 @@ function openDeck(deck){
     if(deck === "touch"){
 
         deckTitle.innerHTML = "🟣 TOUCH ME";
-        deckDescription.innerHTML = "The Connection — Deep Intimacy";
+
+        deckDescription.innerHTML =
+        "The Connection — Deep Intimacy";
 
     }
 
@@ -121,7 +176,9 @@ function openDeck(deck){
     if(deck === "slowburn"){
 
         deckTitle.innerHTML = "🔥 SLOW BURN";
-        deckDescription.innerHTML = "A Journey From Spark To Connection";
+
+        deckDescription.innerHTML =
+        "A Journey From Spark To Connection";
 
     }
 
@@ -129,7 +186,9 @@ function openDeck(deck){
     if(deck === "random"){
 
         deckTitle.innerHTML = "✨ RANDOM WEEKEND";
-        deckDescription.innerHTML = "All Cards. Anything Can Happen";
+
+        deckDescription.innerHTML =
+        "All Cards. Anything Can Happen";
 
     }
 
@@ -138,6 +197,10 @@ function openDeck(deck){
 
 
 
+
+/* ========================= */
+/* START CARD GAME */
+/* ========================= */
 
 function startGame(){
 
@@ -152,14 +215,15 @@ function startGame(){
         slowBurnStage = 0;
 
         remainingCards = [
+
             ...cards[slowBurnDecks[slowBurnStage]]
+
         ];
 
     }
 
 
     else if(currentDeck === "random"){
-
 
         remainingCards = [
 
@@ -173,7 +237,6 @@ function startGame(){
 
 
     else {
-
 
         remainingCards = [
 
@@ -191,6 +254,10 @@ function startGame(){
 
 
 
+
+/* ========================= */
+/* DRAW CARD */
+/* ========================= */
 
 function drawCard(){
 
@@ -231,7 +298,8 @@ function drawCard(){
 
 
 
-    let cardElement = document.querySelector(".card");
+    let cardElement =
+    document.querySelector(".card");
 
 
     cardElement.classList.remove(
@@ -284,12 +352,179 @@ function drawCard(){
 
     },10);
 
+}
+
+
+
+
+
+/* ========================= */
+/* OPEN DICE GAME */
+/* ========================= */
+
+function openDice(){
+
+    currentDeck = "";
+
+    menu.style.display = "none";
+
+    deckIntro.style.display = "none";
+
+    game.style.display = "none";
+
+    diceGame.style.display = "block";
+
+    document.body.className = "dice-theme";
+
+
+    document.getElementById("actionDie").innerHTML = "1";
+
+    document.getElementById("bodyDie").innerHTML = "1";
+
+    document.getElementById("diceAction").innerHTML = "Ready?";
+
+    document.getElementById("diceBody").innerHTML = "Ready?";
+
+    document.getElementById("diceResult").innerHTML =
+    "Roll the dice!";
 
 }
 
 
 
 
+
+/* ========================= */
+/* ROLL DICE */
+/* ========================= */
+
+function rollDice(){
+
+    const actionDie =
+    document.getElementById("actionDie");
+
+    const bodyDie =
+    document.getElementById("bodyDie");
+
+    const diceResult =
+    document.getElementById("diceResult");
+
+
+    actionDie.classList.add("dice-rolling");
+
+    bodyDie.classList.add("dice-rolling");
+
+
+    diceResult.classList.remove("show");
+
+
+
+    let rollTime = 1000;
+
+
+    let animation = setInterval(function(){
+
+        actionDie.innerHTML =
+        Math.floor(Math.random() * 6) + 1;
+
+        bodyDie.innerHTML =
+        Math.floor(Math.random() * 6) + 1;
+
+    },100);
+
+
+
+    setTimeout(function(){
+
+        clearInterval(animation);
+
+
+        actionDie.classList.remove("dice-rolling");
+
+        bodyDie.classList.remove("dice-rolling");
+
+
+
+        let actionRoll =
+        Math.floor(Math.random() * 6);
+
+
+        let bodyRoll =
+        Math.floor(Math.random() * 6);
+
+
+
+        actionDie.innerHTML =
+        actionRoll + 1;
+
+
+        bodyDie.innerHTML =
+        bodyRoll + 1;
+
+
+
+        let selectedAction =
+        diceActions[actionRoll];
+
+
+        let selectedBody =
+        diceBodyParts[bodyRoll];
+
+
+
+        document.getElementById("diceAction").innerHTML =
+        selectedAction;
+
+
+        document.getElementById("diceBody").innerHTML =
+        selectedBody;
+
+
+
+        diceResult.innerHTML =
+
+        selectedAction +
+        " + " +
+        selectedBody;
+
+
+
+        diceResult.classList.add("show");
+
+
+    },rollTime);
+
+}
+
+
+
+
+
+/* ========================= */
+/* CLOSE DICE */
+/* ========================= */
+
+function closeDice(){
+
+    diceGame.style.display = "none";
+
+    menu.style.display = "block";
+
+    deckIntro.style.display = "none";
+
+    game.style.display = "none";
+
+    document.body.className = "";
+
+}
+
+
+
+
+
+/* ========================= */
+/* BACK BUTTON */
+/* ========================= */
 
 function goBack(){
 
@@ -299,6 +534,7 @@ function goBack(){
 
     game.style.display = "none";
 
+    diceGame.style.display = "none";
 
     document.body.className = "";
 
