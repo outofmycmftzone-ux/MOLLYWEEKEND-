@@ -1,277 +1,373 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-<meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Molly Weekend</title>
+
 <link rel="stylesheet" href="style.css">
+
 <link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#ff00ff">
+
 </head>
+
 
 <body>
 
-<div id="app">
 
-<div id="menu">
+<div class="app">
 
-<h1>Molly Weekend</h1>
 
-<button class="deck" onclick="openDeck('tame')">
-🔵 TAME
-<span>The Spark<br>Conversation Starters</span>
-</button>
+<div class="intro-glow">
 
-<button class="deck" onclick="openDeck('desire')">
-🔴 DESIRE
-<span>The Heat<br>Light Foreplay</span>
-</button>
+<h1 class="neon-title">
+MOLLY WEEKEND
+</h1>
 
-<button class="deck" onclick="openDeck('touch')">
-🟣 TOUCH ME
-<span>The Connection<br>Deep Intimacy</span>
-</button>
-
-<button class="deck" onclick="openDeck('slowburn')">
-🔥 SLOW BURN
-<span>Build the tension together</span>
-</button>
-
-<button class="deck" onclick="openDeck('random')">
-✨ RANDOM WEEKEND
-<span>Anything can happen</span>
-</button>
-
-<button class="deck" onclick="openDice()">
-🎲 EROTIC DICE
-<span>Roll for body part and action</span>
-</button>
-
-<button class="deck bingo-button" onclick="openBingo()">
-🔥 COUPLES BINGO
-<span>Complete the squares<br>First line wins</span>
-</button>
-
-</div>
-
-<div id="deckIntro" style="display:none;">
-
-<h2 id="deckTitle"></h2>
-
-<p id="deckDescription"></p>
-
-<button onclick="startGame()">
-START
-</button>
-
-<button onclick="goBack()">
-BACK
-</button>
-
-</div>
-
-<div id="game" style="display:none;">
-
-<div id="category"></div>
-
-<div id="action"></div>
-
-<div id="remaining"></div>
-
-<button onclick="drawCard()">
-DRAW CARD
-</button>
-
-<button onclick="goBack()">
-BACK
-</button>
-
-</div>
-
-<div id="diceGame" style="display:none;">
-
-<h2>🎲 EROTIC DICE</h2>
-
-<div class="dice-container">
-
-<div class="dice-result">
-Body Part
-<strong id="diceBody">—</strong>
-</div>
-
-<div class="dice-result">
-Action
-<strong id="diceAction">—</strong>
-</div>
-
-<button onclick="rollDice()">
-ROLL DICE
-</button>
-
-<button onclick="closeDice()">
-BACK
-</button>
-
-</div>
-
-</div>
-
-<div id="bingoGame" style="display:none;">
-
-<div class="bingo-header">
-
-<h2 class="bingo-title">🔥 SPICY COUPLES BINGO</h2>
-
-<p class="bingo-subtitle">
-Mark squares as you complete them.<br>
-First to a full line wins.
+<p class="tagline">
+Can you feel it yet?
 </p>
 
 </div>
 
-<div class="bingo-controls">
 
-<div class="bingo-name-row">
 
-<input
-id="bingoName1"
-type="text"
-placeholder="Partner 1 name"
-maxlength="20"
->
 
-<input
-id="bingoName2"
-type="text"
-placeholder="Partner 2 name"
-maxlength="20"
->
+<div id="menu">
 
-</div>
 
-<div class="bingo-kink-section">
+<p class="subtitle">
+Choose your experience
+</p>
 
-<div class="bingo-section-title">
-Intensity / Kinks
-</div>
 
-<div class="bingo-kinks" id="bingoKinkToggles">
 
-<label>
-<input type="checkbox" value="soft" checked>
-Soft
-</label>
+<button class="deck blue" onclick="openDeck('tame')">
 
-<label>
-<input type="checkbox" value="tease" checked>
-Tease
-</label>
+🔵 TAME
 
-<label>
-<input type="checkbox" value="oral" checked>
-Oral
-</label>
+<span>
+The Spark<br>
+Conversation Starters
+</span>
 
-<label>
-<input type="checkbox" value="touch" checked>
-Touch
-</label>
-
-<label>
-<input type="checkbox" value="toys">
-Toys
-</label>
-
-<label>
-<input type="checkbox" value="bdsm">
-Light BDSM
-</label>
-
-<label>
-<input type="checkbox" value="role">
-Roleplay
-</label>
-
-<label>
-<input type="checkbox" value="intense">
-Intense
-</label>
-
-</div>
-
-</div>
-
-<div class="bingo-board-size">
-
-<div class="bingo-section-title">
-Board Size
-</div>
-
-<select id="bingoSize">
-
-<option value="3">
-3 × 3
-</option>
-
-<option value="4">
-4 × 4
-</option>
-
-<option value="5" selected>
-5 × 5
-</option>
-
-</select>
-
-</div>
-
-<div class="bingo-button-row">
-
-<button
-type="button"
-onclick="generateBingoBoard()">
-New Board
 </button>
 
-<button
-type="button"
-class="bingo-secondary"
-onclick="resetBingoMarks()">
-Reset Marks
+
+
+
+<button class="deck red" onclick="openDeck('desire')">
+
+🔴 DESIRE
+
+<span>
+The Heat<br>
+Light Foreplay
+</span>
+
 </button>
 
-</div>
 
-</div>
 
-<div class="bingo-board-wrap">
 
-<div id="bingoBoard" class="bingo-board"></div>
+<button class="deck purple" onclick="openDeck('touch')">
 
-<div id="bingoStatus" class="bingo-status">
-Complete a row, column, or diagonal to win!
-</div>
+🟣 TOUCH ME
 
-</div>
+<span>
+The Connection<br>
+Deep Intimacy
+</span>
 
-<button
-type="button"
-class="bingo-back"
-onclick="closeBingo()">
-← Back to Menu
 </button>
 
-</div>
+
+
+
+<button class="deck red" onclick="openDeck('slowburn')">
+
+🔥 SLOW BURN
+
+<span>
+A Journey From Spark To Connection
+</span>
+
+</button>
+
+
+
+
+<button class="deck blue" onclick="openDeck('random')">
+
+✨ RANDOM WEEKEND
+
+<span>
+All Cards. Anything Can Happen
+</span>
+
+</button>
+
+
+
+
+<!-- DICE GAME BUTTON -->
+
+<button class="deck dice-button" onclick="openDice()">
+
+🎲 EROTIC DICE
+
+<span>
+Roll The Dice<br>
+Anything Can Happen
+</span>
+
+</button>
+
 
 </div>
+
+
+
+
+
+
+<div id="deckIntro" style="display:none;">
+
+
+<h2 id="deckTitle"></h2>
+
+
+<p id="deckDescription"></p>
+
+
+
+
+<button class="draw" onclick="startGame()">
+
+▶ START
+
+</button>
+
+
+
+
+<button class="back" onclick="goBack()">
+
+BACK
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+
+<div id="game" style="display:none;">
+
+
+<div class="card">
+
+
+<h2 id="category"></h2>
+
+
+<p id="action"></p>
+
+
+<p id="remaining"></p>
+
+
+</div>
+
+
+
+
+
+<button class="draw" onclick="drawCard()">
+
+🎴 DRAW CARD
+
+</button>
+
+
+
+
+<button class="back" onclick="goBack()">
+
+BACK
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+<!-- ========================= -->
+<!-- DICE GAME -->
+<!-- ========================= -->
+
+<div id="diceGame" style="display:none;">
+
+
+<h2 class="dice-title">
+🎲 EROTIC DICE
+</h2>
+
+
+<p class="dice-subtitle">
+Roll the dice and see what happens.
+</p>
+
+
+
+<div class="dice-container">
+
+
+<!-- ACTION DIE -->
+
+<div class="die-section">
+
+
+<h3>
+ACTION
+</h3>
+
+
+<div id="actionDie" class="die">
+
+1
+
+</div>
+
+
+<p id="diceAction">
+Ready?
+</p>
+
+
+</div>
+
+
+
+
+<div class="plus">
++
+</div>
+
+
+
+
+<!-- BODY PART DIE -->
+
+<div class="die-section">
+
+
+<h3>
+BODY PART
+</h3>
+
+
+<div id="bodyDie" class="die">
+
+1
+
+</div>
+
+
+<p id="diceBody">
+Ready?
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div id="diceResult" class="dice-result">
+
+Roll the dice!
+
+</div>
+
+
+
+
+
+<button class="draw dice-roll-button" onclick="rollDice()">
+
+🎲 ROLL DICE
+
+</button>
+
+
+
+
+<button class="back" onclick="closeDice()">
+
+BACK
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
 
 <script src="script.js"></script>
 
+
+
 <script>
+
 if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("service-worker.js")
-        .catch(error => console.error(error));
+
+window.addEventListener("load", function(){
+
+navigator.serviceWorker.register("service-worker.js")
+
+.then(function(){
+
+console.log("Service worker active");
+
+})
+
+.catch(function(error){
+
+console.log("Service worker failed", error);
+
+});
+
+});
+
 }
+
 </script>
 
+
 </body>
+
 </html>
