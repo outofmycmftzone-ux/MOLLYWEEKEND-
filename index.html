@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>Molly Weekend</title>
 
@@ -22,6 +25,10 @@
 <div class="app">
 
 
+<!-- ========================= -->
+<!-- MOLLY WEEKEND INTRO -->
+<!-- ========================= -->
+
 <div class="intro-glow">
 
 <h1 class="neon-title">
@@ -36,6 +43,9 @@ Can you feel it yet?
 
 
 
+<!-- ========================= -->
+<!-- MAIN MENU -->
+<!-- ========================= -->
 
 <div id="menu">
 
@@ -46,7 +56,8 @@ Choose your experience
 
 
 
-<button class="deck blue" onclick="openDeck('tame')">
+<button class="deck blue"
+        onclick="openDeck('tame')">
 
 🔵 TAME
 
@@ -59,8 +70,8 @@ Conversation Starters
 
 
 
-
-<button class="deck red" onclick="openDeck('desire')">
+<button class="deck red"
+        onclick="openDeck('desire')">
 
 🔴 DESIRE
 
@@ -73,8 +84,8 @@ Light Foreplay
 
 
 
-
-<button class="deck purple" onclick="openDeck('touch')">
+<button class="deck purple"
+        onclick="openDeck('touch')">
 
 🟣 TOUCH ME
 
@@ -87,8 +98,8 @@ Deep Intimacy
 
 
 
-
-<button class="deck red" onclick="openDeck('slowburn')">
+<button class="deck red"
+        onclick="openDeck('slowburn')">
 
 🔥 SLOW BURN
 
@@ -100,8 +111,8 @@ A Journey From Spark To Connection
 
 
 
-
-<button class="deck blue" onclick="openDeck('random')">
+<button class="deck blue"
+        onclick="openDeck('random')">
 
 ✨ RANDOM WEEKEND
 
@@ -113,10 +124,10 @@ All Cards. Anything Can Happen
 
 
 
+<!-- DICE GAME -->
 
-<!-- DICE GAME BUTTON -->
-
-<button class="deck dice-button" onclick="openDice()">
+<button class="deck dice-button"
+        onclick="openDice()">
 
 🎲 EROTIC DICE
 
@@ -128,14 +139,32 @@ Anything Can Happen
 </button>
 
 
+
+<!-- BINGO GAME -->
+
+<button class="deck bingo-button"
+        onclick="openBingo()">
+
+🔥 COUPLES BINGO
+
+<span>
+Complete the squares<br>
+First line wins
+</span>
+
+</button>
+
+
 </div>
 
 
 
+<!-- ========================= -->
+<!-- DECK INTRO -->
+<!-- ========================= -->
 
-
-
-<div id="deckIntro" style="display:none;">
+<div id="deckIntro"
+     style="display:none;">
 
 
 <h2 id="deckTitle"></h2>
@@ -145,8 +174,8 @@ Anything Can Happen
 
 
 
-
-<button class="draw" onclick="startGame()">
+<button class="draw"
+        onclick="startGame()">
 
 ▶ START
 
@@ -154,8 +183,8 @@ Anything Can Happen
 
 
 
-
-<button class="back" onclick="goBack()">
+<button class="back"
+        onclick="goBack()">
 
 BACK
 
@@ -166,11 +195,12 @@ BACK
 
 
 
+<!-- ========================= -->
+<!-- CARD GAME -->
+<!-- ========================= -->
 
-
-
-
-<div id="game" style="display:none;">
+<div id="game"
+     style="display:none;">
 
 
 <div class="card">
@@ -189,9 +219,8 @@ BACK
 
 
 
-
-
-<button class="draw" onclick="drawCard()">
+<button class="draw"
+        onclick="drawCard()">
 
 🎴 DRAW CARD
 
@@ -199,8 +228,8 @@ BACK
 
 
 
-
-<button class="back" onclick="goBack()">
+<button class="back"
+        onclick="goBack()">
 
 BACK
 
@@ -211,14 +240,12 @@ BACK
 
 
 
-
-
-
 <!-- ========================= -->
 <!-- DICE GAME -->
 <!-- ========================= -->
 
-<div id="diceGame" style="display:none;">
+<div id="diceGame"
+     style="display:none;">
 
 
 <h2 class="dice-title">
@@ -235,17 +262,15 @@ Roll the dice and see what happens.
 <div class="dice-container">
 
 
-<!-- ACTION DIE -->
-
 <div class="die-section">
-
 
 <h3>
 ACTION
 </h3>
 
 
-<div id="actionDie" class="die">
+<div id="actionDie"
+     class="die">
 
 1
 
@@ -256,9 +281,7 @@ ACTION
 Ready?
 </p>
 
-
 </div>
-
 
 
 
@@ -268,18 +291,15 @@ Ready?
 
 
 
-
-<!-- BODY PART DIE -->
-
 <div class="die-section">
-
 
 <h3>
 BODY PART
 </h3>
 
 
-<div id="bodyDie" class="die">
+<div id="bodyDie"
+     class="die">
 
 1
 
@@ -290,7 +310,6 @@ BODY PART
 Ready?
 </p>
 
-
 </div>
 
 
@@ -298,9 +317,8 @@ Ready?
 
 
 
-
-
-<div id="diceResult" class="dice-result">
+<div id="diceResult"
+     class="dice-result">
 
 Roll the dice!
 
@@ -308,9 +326,8 @@ Roll the dice!
 
 
 
-
-
-<button class="draw dice-roll-button" onclick="rollDice()">
+<button class="draw dice-roll-button"
+        onclick="rollDice()">
 
 🎲 ROLL DICE
 
@@ -318,8 +335,198 @@ Roll the dice!
 
 
 
+<button class="back"
+        onclick="closeDice()">
 
-<button class="back" onclick="closeDice()">
+BACK
+
+</button>
+
+
+</div>
+
+
+
+<!-- ========================= -->
+<!-- COUPLES BINGO -->
+<!-- ========================= -->
+
+<div id="bingoGame"
+     style="display:none;">
+
+
+<div class="bingo-header">
+
+<h2 class="bingo-title">
+🔥 COUPLES BINGO
+</h2>
+
+
+<p class="bingo-subtitle">
+Complete a line together.
+</p>
+
+</div>
+
+
+
+<!-- PLAYER NAMES -->
+
+<div class="bingo-controls">
+
+
+<div class="bingo-name-row">
+
+<input
+    id="bingoName1"
+    type="text"
+    placeholder="Partner 1"
+    maxlength="20"
+>
+
+
+<input
+    id="bingoName2"
+    type="text"
+    placeholder="Partner 2"
+    maxlength="20"
+>
+
+</div>
+
+
+
+<!-- INTENSITY -->
+
+<div class="bingo-section-title">
+Choose your intensity
+</div>
+
+
+<div class="bingo-intensity">
+
+<label>
+<input
+    type="radio"
+    name="bingoIntensity"
+    value="sweet"
+    checked
+>
+<span>💕 Sweet</span>
+</label>
+
+
+<label>
+<input
+    type="radio"
+    name="bingoIntensity"
+    value="flirty"
+>
+<span>💋 Flirty</span>
+</label>
+
+
+<label>
+<input
+    type="radio"
+    name="bingoIntensity"
+    value="steamy"
+>
+<span>🔥 Steamy</span>
+</label>
+
+
+<label>
+<input
+    type="radio"
+    name="bingoIntensity"
+    value="wild"
+>
+<span>🌶️ Wild</span>
+</label>
+
+</div>
+
+
+
+<!-- BOARD SIZE -->
+
+<div class="bingo-section-title">
+Board size
+</div>
+
+
+<select id="bingoSize">
+
+<option value="3">
+3 × 3 — Quick
+</option>
+
+<option value="4">
+4 × 4 — Medium
+</option>
+
+<option value="5"
+        selected>
+5 × 5 — Classic
+</option>
+
+</select>
+
+
+
+<div class="bingo-button-row">
+
+
+<button
+    class="bingo-action-button"
+    onclick="generateBingoBoard()">
+
+NEW BOARD
+
+</button>
+
+
+<button
+    class="bingo-reset-button"
+    onclick="resetBingoMarks()">
+
+RESET
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- BINGO BOARD -->
+
+<div class="bingo-board-wrap">
+
+
+<div
+    id="bingoBoard"
+    class="bingo-board">
+</div>
+
+
+<div
+    id="bingoStatus"
+    class="bingo-status">
+</div>
+
+
+</div>
+
+
+
+<button
+    class="back bingo-back"
+    onclick="closeBingo()">
 
 BACK
 
@@ -333,35 +540,42 @@ BACK
 
 
 
-
-
-
+<!-- MAIN SCRIPT -->
 
 <script src="script.js"></script>
 
 
 
+<!-- SERVICE WORKER -->
+
 <script>
 
 if ("serviceWorker" in navigator) {
 
-window.addEventListener("load", function(){
+    window.addEventListener("load", function() {
 
-navigator.serviceWorker.register("service-worker.js")
+        navigator.serviceWorker.register(
+            "service-worker.js"
+        )
 
-.then(function(){
+        .then(function() {
 
-console.log("Service worker active");
+            console.log(
+                "Molly Weekend service worker active"
+            );
 
-})
+        })
 
-.catch(function(error){
+        .catch(function(error) {
 
-console.log("Service worker failed", error);
+            console.log(
+                "Service worker failed",
+                error
+            );
 
-});
+        });
 
-});
+    });
 
 }
 
