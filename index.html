@@ -1,700 +1,542 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>Molly Weekend</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link rel="manifest" href="manifest.json">
-
-<meta name="theme-color" content="#ff00ff">
-
-</head>
-
-
-<body>
-
-
-<div class="app">
-
-
-<!-- ========================= -->
-<!-- MOLLY WEEKEND INTRO -->
-<!-- ========================= -->
-
-<div class="intro-glow">
-
-<h1 class="neon-title">
-MOLLY WEEKEND
-</h1>
-
-<p class="tagline">
-Can you feel it yet?
-</p>
-
-</div>
-
-
-
-<!-- ========================= -->
-<!-- MAIN MENU -->
-<!-- ========================= -->
-
-<div id="menu">
-
-
-<p class="subtitle">
-Choose your experience
-</p>
-
-
-
-<button class="deck blue"
-        onclick="openDeck('tame')">
-
-🔵 TAME
-
-<span>
-The Spark<br>
-Conversation Starters
-</span>
-
-</button>
-
-
-
-<button class="deck red"
-        onclick="openDeck('desire')">
-
-🔴 DESIRE
-
-<span>
-The Heat<br>
-Light Foreplay
-</span>
-
-</button>
-
-
-
-<button class="deck purple"
-        onclick="openDeck('touch')">
-
-🟣 TOUCH ME
-
-<span>
-The Connection<br>
-Deep Intimacy
-</span>
-
-</button>
-
-
-
-<button class="deck red"
-        onclick="openDeck('slowburn')">
-
-🔥 SLOW BURN
-
-<span>
-A Journey From Spark To Connection
-</span>
-
-</button>
-
-
-
-<button class="deck blue"
-        onclick="openDeck('random')">
-
-✨ RANDOM WEEKEND
-
-<span>
-All Cards. Anything Can Happen
-</span>
-
-</button>
-
-
-
-<!-- DICE GAME -->
-
-<button class="deck dice-button"
-        onclick="openDice()">
-
-🎲 EROTIC DICE
-
-<span>
-Roll The Dice<br>
-Anything Can Happen
-</span>
-
-</button>
-
-
-
-<!-- BINGO GAME -->
-
-<button class="deck bingo-button"
-        onclick="openBingo()">
-
-🔥 COUPLES BINGO
-
-<span>
-Complete the squares<br>
-First line wins
-</span>
-
-</button>
-
-
-</div>
-
-
-
-<!-- ========================= -->
-<!-- DECK INTRO -->
-<!-- ========================= -->
-
-<div id="deckIntro"
-     style="display:none;">
-
-
-<h2 id="deckTitle"></h2>
-
-
-<p id="deckDescription"></p>
-
-
-
-<button class="draw"
-        onclick="startGame()">
-
-▶ START
-
-</button>
-
-
-
-<button class="back"
-        onclick="goBack()">
-
-BACK
-
-</button>
-
-
-</div>
-
-
-
-<!-- ========================= -->
-<!-- CARD GAME -->
-<!-- ========================= -->
-
-<div id="game"
-     style="display:none;">
-
-
-<div class="card">
-
-
-<h2 id="category"></h2>
-
-
-<p id="action"></p>
-
-
-<p id="remaining"></p>
-
-
-</div>
-
-
-
-<button class="draw"
-        onclick="drawCard()">
-
-🎴 DRAW CARD
-
-</button>
-
-
-
-<button class="back"
-        onclick="goBack()">
-
-BACK
-
-</button>
-
-
-</div>
-
-
-
-<!-- ========================= -->
-<!-- DICE GAME -->
-<!-- ========================= -->
-
-<div id="diceGame"
-     style="display:none;">
-
-
-<h2 class="dice-title">
-🎲 EROTIC DICE
-</h2>
-
-
-<p class="dice-subtitle">
-Roll the dice and see what happens.
-</p>
-
-
-
-<div class="dice-container">
-
-
-<div class="die-section">
-
-<h3>
-ACTION
-</h3>
-
-
-<div id="actionDie"
-     class="die">
-
-1
-
-</div>
-
-
-<p id="diceAction">
-Ready?
-</p>
-
-</div>
-
-
-
-<div class="plus">
-+
-</div>
-
-
-
-<div class="die-section">
-
-<h3>
-BODY PART
-</h3>
-
-
-<div id="bodyDie"
-     class="die">
-
-1
-
-</div>
-
-
-<p id="diceBody">
-Ready?
-</p>
-
-</div>
-
-
-</div>
-
-
-
-<div id="diceResult"
-     class="dice-result">
-
-Roll the dice!
-
-</div>
-
-
-
-<button class="draw dice-roll-button"
-        onclick="rollDice()">
-
-🎲 ROLL DICE
-
-</button>
-
-
-
-<button class="back"
-        onclick="closeDice()">
-
-BACK
-
-</button>
-
-
-</div>
-
-
-
-<!-- ========================= -->
-<!-- COUPLES BINGO -->
-<!-- ========================= -->
-
-<div id="bingoGame" style="display:none;">
-
-    <div class="bingo-header">
-        <h2 class="bingo-title">🔥 SPICY COUPLES BINGO</h2>
-
-        <p class="bingo-subtitle">
-            Mark squares as you complete them.<br>
-            First to a full line wins.
-        </p>
-    </div>
-
-    <div class="bingo-controls">
-
-        <div class="bingo-name-row">
-            <input
-                id="bingoName1"
-                type="text"
-                placeholder="Partner 1 name"
-            >
-
-            <input
-                id="bingoName2"
-                type="text"
-                placeholder="Partner 2 name"
-            >
-        </div>
-
-        <div class="bingo-kink-section">
-
-            <div class="bingo-section-title">
-                Intensity / Kinks
-            </div>
-
-            <div class="bingo-kinks" id="bingoKinkToggles">
-
-                <label>
-                    <input type="checkbox" value="soft" checked>
-                    Soft
-                </label>
-
-                <label>
-                    <input type="checkbox" value="tease" checked>
-                    Tease
-                </label>
-
-                <label>
-                    <input type="checkbox" value="oral" checked>
-                    Oral
-                </label>
-
-                <label>
-                    <input type="checkbox" value="touch" checked>
-                    Touch
-                </label>
-
-                <label>
-                    <input type="checkbox" value="toys">
-                    Toys
-                </label>
-
-                <label>
-                    <input type="checkbox" value="bdsm">
-                    Light BDSM
-                </label>
-
-                <label>
-                    <input type="checkbox" value="role">
-                    Roleplay
-                </label>
-
-                <label>
-                    <input type="checkbox" value="intense">
-                    Intense
-                </label>
-
-            </div>
-        </div>
-
-        <div class="bingo-board-size">
-
-            <div class="bingo-section-title">
-                Board Size
-            </div>
-
-            <select id="bingoSize">
-                <option value="3">3 × 3</option>
-                <option value="4">4 × 4</option>
-                <option value="5" selected>5 × 5</option>
-            </select>
-
-        </div>
-
-        <div class="bingo-button-row">
-
-            <button
-                type="button"
-                onclick="generateBingoBoard()">
-                New Board
-            </button>
-
-            <button
-                type="button"
-                class="bingo-secondary"
-                onclick="resetBingoMarks()">
-                Reset Marks
-            </button>
-
-        </div>
-
-    </div>
-
-    <div class="bingo-board-wrap">
-
-        <div id="bingoBoard" class="bingo-board"></div>
-
-        <div id="bingoStatus" class="bingo-status">
-            Complete a row, column, or diagonal to win!
-        </div>
-
-    </div>
-
-    <button
-        type="button"
-        class="bingo-back"
-        onclick="closeBingo()">
-        ← Back to Menu
-    </button>
-
-</div>
-
-
-
-<!-- PLAYER NAMES -->
-
-<div class="bingo-controls">
-
-
-<div class="bingo-name-row">
-
-<input
-    id="bingoName1"
-    type="text"
-    placeholder="Partner 1"
-    maxlength="20"
->
-
-
-<input
-    id="bingoName2"
-    type="text"
-    placeholder="Partner 2"
-    maxlength="20"
->
-
-</div>
-
-
-
-<!-- INTENSITY -->
-
-<div class="bingo-section-title">
-Choose your intensity
-</div>
-
-
-<div class="bingo-intensity">
-
-<label>
-<input
-    type="radio"
-    name="bingoIntensity"
-    value="sweet"
-    checked
->
-<span>💕 Sweet</span>
-</label>
-
-
-<label>
-<input
-    type="radio"
-    name="bingoIntensity"
-    value="flirty"
->
-<span>💋 Flirty</span>
-</label>
-
-
-<label>
-<input
-    type="radio"
-    name="bingoIntensity"
-    value="steamy"
->
-<span>🔥 Steamy</span>
-</label>
-
-
-<label>
-<input
-    type="radio"
-    name="bingoIntensity"
-    value="wild"
->
-<span>🌶️ Wild</span>
-</label>
-
-</div>
-
-
-
-<!-- BOARD SIZE -->
-
-<div class="bingo-section-title">
-Board size
-</div>
-
-
-<select id="bingoSize">
-
-<option value="3">
-3 × 3 — Quick
-</option>
-
-<option value="4">
-4 × 4 — Medium
-</option>
-
-<option value="5"
-        selected>
-5 × 5 — Classic
-</option>
-
-</select>
-
-
-
-<div class="bingo-button-row">
-
-
-<button
-    class="bingo-action-button"
-    onclick="generateBingoBoard()">
-
-NEW BOARD
-
-</button>
-
-
-<button
-    class="bingo-reset-button"
-    onclick="resetBingoMarks()">
-
-RESET
-
-</button>
-
-
-</div>
-
-
-</div>
-
-
-
-<!-- BINGO BOARD -->
-
-<div class="bingo-board-wrap">
-
-
-<div
-    id="bingoBoard"
-    class="bingo-board">
-</div>
-
-
-<div
-    id="bingoStatus"
-    class="bingo-status">
-</div>
-
-
-</div>
-
-
-
-<button
-    class="back bingo-back"
-    onclick="closeBingo()">
-
-BACK
-
-</button>
-
-
-</div>
-
-
-</div>
-
-
-
-<!-- MAIN SCRIPT -->
-
-<script src="script.js"></script>
-
-
-
-<!-- SERVICE WORKER -->
-
-<script>
-
-if ("serviceWorker" in navigator) {
-
-    window.addEventListener("load", function() {
-
-        navigator.serviceWorker.register(
-            "service-worker.js"
-        )
-
-        .then(function() {
-
-            console.log(
-                "Molly Weekend service worker active"
-            );
-
-        })
-
-        .catch(function(error) {
-
-            console.log(
-                "Service worker failed",
-                error
-            );
-
-        });
-
+const menu = document.getElementById("menu");
+const deckIntro = document.getElementById("deckIntro");
+const game = document.getElementById("game");
+const diceGame = document.getElementById("diceGame");
+const bingoGame = document.getElementById("bingoGame");
+
+const deckTitle = document.getElementById("deckTitle");
+const deckDescription = document.getElementById("deckDescription");
+
+const category = document.getElementById("category");
+const action = document.getElementById("action");
+const remaining = document.getElementById("remaining");
+
+let currentDeck = [];
+let remainingCards = [];
+let cards = {};
+let slowBurnStage = 0;
+
+const diceBodyParts = [
+    "Lips",
+    "Stomach",
+    "Nipples",
+    "Cock/Pussy",
+    "Butt",
+    "Your Choice"
+];
+
+const diceActions = [
+    "Kiss",
+    "Touch",
+    "Caress",
+    "Massage",
+    "Tease",
+    "Your Choice"
+];
+
+const slowBurnDecks = [
+    "tame",
+    "desire",
+    "touch"
+];
+
+let bingoBoard = [];
+let bingoMarked = [];
+let bingoSize = 5;
+
+const bingoTasks = {
+    soft: [
+        "Kiss for 60 seconds without using hands",
+        "Slow full-body massage for 3 minutes",
+        "Whisper something dirty in their ear",
+        "Trace their lips with your finger then kiss",
+        "Hold eye contact while undressing each other slowly",
+        "Kiss every freckle/mole you can find",
+        "Give a sensual neck and shoulder massage",
+        "Feed each other something sweet with your fingers"
+    ],
+
+    tease: [
+        "Blindfold them and tease with light touches for 2 min",
+        "Striptease for 90 seconds",
+        "Kiss everywhere except the obvious places for 3 min",
+        "Use only your breath on their skin for 60 seconds",
+        "Tease them with ice or a cold drink can",
+        "Describe exactly what you want to do next",
+        "Make them wait while you touch yourself for 1 min",
+        "Edge them with slow strokes for 2 minutes"
+    ],
+
+    oral: [
+        "Oral for 2 minutes, no hands",
+        "Lick and kiss inner thighs only for 90 seconds",
+        "69 position for 2 minutes",
+        "Oral while maintaining eye contact",
+        "Use only your tongue for 60 seconds",
+        "Kiss and suck their fingers one by one",
+        "Oral with a slow, teasing rhythm for 3 min",
+        "Switch who receives oral every 30 seconds"
+    ],
+
+    touch: [
+        "Mutual masturbation for 2 minutes",
+        "Hand exploration under clothes for 3 min",
+        "Grind clothed for 90 seconds",
+        "Massage with oil (or lotion) for 4 minutes",
+        "Touch only with the backs of your hands",
+        "Slow full-body caress while spooning",
+        "Pin their wrists and explore with your mouth",
+        "Use a feather or soft fabric to tease"
+    ],
+
+    toys: [
+        "Use a vibrator on them for 2 minutes",
+        "Control the toy while kissing them",
+        "Toy + oral combination for 90 seconds",
+        "Blindfold + toy teasing for 2 min",
+        "Take turns controlling the intensity",
+        "Use the toy on yourself while they watch",
+        "Toy on the outside only for 3 minutes",
+        "Remote (or timed) toy play for 2 min"
+    ],
+
+    bdsm: [
+        "Light spanking (10–15 spanks)",
+        "Blindfold them for the next 3 activities",
+        "Tie their wrists loosely with a scarf",
+        "Orgasm control / denial for 2 minutes",
+        "Hair pulling during a passionate kiss",
+        "Light biting on shoulders/neck",
+        "Command them to stay still while you touch",
+        "Use a safe word and edge them"
+    ],
+
+    role: [
+        "Roleplay: strangers meeting for the first time",
+        "Roleplay: boss & employee (keep it fun)",
+        "Act out a fantasy one of you has shared",
+        "Speak only in commands for 2 minutes",
+        "Pretend one of you is shy / inexperienced",
+        "Roleplay a scene from a favorite story",
+        "One of you is in charge for the next 5 min",
+        "Dirty talk only in character for 3 min"
+    ],
+
+    intense: [
+        "Penetration in a new position for 3 minutes",
+        "Doggy with hair pulling and dirty talk",
+        "Against the wall or on the edge of the bed",
+        "Slow deep strokes while locked in eye contact",
+        "Finish in a position of the other person’s choice",
+        "Change positions every 45 seconds for 3 min",
+        "One partner stays still, the other controls pace",
+        "Mutual climax attempt within 4 minutes"
+    ]
+};
+
+fetch("cards.json")
+    .then(response => response.json())
+    .then(data => {
+        cards = data;
+    })
+    .catch(error => {
+        console.error("Error loading cards:", error);
     });
 
+function openDeck(deckName) {
+    currentDeck = cards[deckName] || [];
+    remainingCards = [...currentDeck];
+
+    menu.style.display = "none";
+    bingoGame.style.display = "none";
+    diceGame.style.display = "none";
+    game.style.display = "none";
+    deckIntro.style.display = "block";
+
+    if (deckName === "tame") {
+        deckTitle.textContent = "🔵 TAME";
+        deckDescription.textContent = "The Spark — Conversation Starters";
+    } 
+    else if (deckName === "desire") {
+        deckTitle.textContent = "🔴 DESIRE";
+        deckDescription.textContent = "The Heat — Light Foreplay";
+    } 
+    else if (deckName === "touch") {
+        deckTitle.textContent = "🟣 TOUCH ME";
+        deckDescription.textContent = "The Connection — Deep Intimacy";
+    } 
+    else if (deckName === "slowburn" || deckName === "slowBurn") {
+        deckTitle.textContent = "🔥 SLOW BURN";
+        deckDescription.textContent = "Build the tension together.";
+
+        slowBurnStage = 0;
+
+        currentDeck = cards.tame || [];
+        remainingCards = [...currentDeck];
+    } 
+    else if (deckName === "random") {
+        deckTitle.textContent = "✨ RANDOM WEEKEND";
+        deckDescription.textContent = "Anything can happen.";
+
+        currentDeck = Object.values(cards)
+            .filter(value => Array.isArray(value))
+            .flat();
+
+        remainingCards = [...currentDeck];
+    }
 }
 
-</script>
+function startGame() {
+    deckIntro.style.display = "none";
+    game.style.display = "block";
 
+    remaining.textContent = remainingCards.length;
 
-</body>
+    drawCard();
+}
 
-</html>
+function drawCard() {
+    if (remainingCards.length === 0) {
+        action.textContent = "You've completed this deck!";
+        category.textContent = "";
+        remaining.textContent = "0";
+        return;
+    }
+
+    const randomIndex =
+        Math.floor(Math.random() * remainingCards.length);
+
+    const card =
+        remainingCards.splice(randomIndex, 1)[0];
+
+    category.textContent = card.category || "";
+    action.textContent = card.action || card.text || card;
+
+    remaining.textContent = remainingCards.length;
+}
+function openDice() {
+    menu.style.display = "none";
+    deckIntro.style.display = "none";
+    game.style.display = "none";
+    bingoGame.style.display = "none";
+    diceGame.style.display = "block";
+
+    document.body.className = "dice-theme";
+}
+
+function rollDice() {
+    const bodyPart =
+        diceBodyParts[
+            Math.floor(Math.random() * diceBodyParts.length)
+        ];
+
+    const diceAction =
+        diceActions[
+            Math.floor(Math.random() * diceActions.length)
+        ];
+
+    document.getElementById("diceBody").textContent = bodyPart;
+    document.getElementById("diceAction").textContent = diceAction;
+}
+
+function closeDice() {
+    diceGame.style.display = "none";
+    menu.style.display = "block";
+
+    document.body.className = "";
+}
+
+function openBingo() {
+    menu.style.display = "none";
+    deckIntro.style.display = "none";
+    game.style.display = "none";
+    diceGame.style.display = "none";
+    bingoGame.style.display = "block";
+
+    document.body.className = "bingo-theme";
+
+    generateBingoBoard();
+}
+
+function closeBingo() {
+    bingoGame.style.display = "none";
+    menu.style.display = "block";
+
+    document.body.className = "";
+}
+
+function getSelectedBingoCategories() {
+    const checks =
+        document.querySelectorAll(
+            "#bingoKinkToggles input:checked"
+        );
+
+    return Array.from(checks).map(
+        checkbox => checkbox.value
+    );
+}
+
+function getBingoSize() {
+    const select =
+        document.getElementById("bingoSize");
+
+    return parseInt(select.value, 10) || 5;
+}
+
+function shuffleArray(array) {
+    const shuffled = [...array];
+
+    for (
+        let i = shuffled.length - 1;
+        i > 0;
+        i--
+    ) {
+        const j =
+            Math.floor(Math.random() * (i + 1));
+
+        [shuffled[i], shuffled[j]] =
+            [shuffled[j], shuffled[i]];
+    }
+
+    return shuffled;
+}
+
+function createBingoPool() {
+    let categories =
+        getSelectedBingoCategories();
+
+    if (categories.length === 0) {
+        categories = [
+            "soft",
+            "tease",
+            "touch"
+        ];
+    }
+
+    let pool = [];
+
+    categories.forEach(categoryName => {
+        if (bingoTasks[categoryName]) {
+            pool = pool.concat(
+                bingoTasks[categoryName]
+            );
+        }
+    });
+
+    return shuffleArray(pool);
+}
+
+function generateBingoBoard() {
+    bingoSize = getBingoSize();
+
+    const totalSquares =
+        bingoSize * bingoSize;
+
+    const pool =
+        createBingoPool();
+
+    bingoBoard = [];
+
+    for (
+        let i = 0;
+        i < totalSquares;
+        i++
+    ) {
+        bingoBoard.push(
+            pool[i % pool.length]
+        );
+    }
+
+    bingoMarked =
+        new Array(totalSquares).fill(false);
+
+    renderBingoBoard();
+
+    document.getElementById(
+        "bingoStatus"
+    ).textContent =
+        "Complete a row, column, or diagonal to win!";
+}
+
+function renderBingoBoard() {
+    const board =
+        document.getElementById("bingoBoard");
+
+    board.innerHTML = "";
+
+    board.style.gridTemplateColumns =
+        `repeat(${bingoSize}, 1fr)`;
+
+    bingoBoard.forEach(
+        (task, index) => {
+
+            const cell =
+                document.createElement("button");
+
+            cell.type = "button";
+
+            cell.className =
+                "bingo-cell";
+
+            cell.textContent = task;
+
+            if (bingoMarked[index]) {
+                cell.classList.add("marked");
+            }
+
+            cell.addEventListener(
+                "click",
+                () => {
+                    toggleBingoMark(index);
+                }
+            );
+
+            board.appendChild(cell);
+        }
+    );
+}
+
+function toggleBingoMark(index) {
+    bingoMarked[index] =
+        !bingoMarked[index];
+
+    renderBingoBoard();
+
+    if (bingoMarked[index]) {
+        checkBingoWin();
+    }
+}
+
+function resetBingoMarks() {
+    bingoMarked =
+        new Array(bingoBoard.length)
+            .fill(false);
+
+    renderBingoBoard();
+
+    document.getElementById(
+        "bingoStatus"
+    ).textContent =
+        "Complete a row, column, or diagonal to win!";
+}
+function checkBingoWin() {
+    const size = bingoSize;
+    const lines = [];
+
+    for (
+        let row = 0;
+        row < size;
+        row++
+    ) {
+        const line = [];
+
+        for (
+            let column = 0;
+            column < size;
+            column++
+        ) {
+            line.push(
+                row * size + column
+            );
+        }
+
+        lines.push(line);
+    }
+
+    for (
+        let column = 0;
+        column < size;
+        column++
+    ) {
+        const line = [];
+
+        for (
+            let row = 0;
+            row < size;
+            row++
+        ) {
+            line.push(
+                row * size + column
+            );
+        }
+
+        lines.push(line);
+    }
+
+    const diagonalOne = [];
+
+    for (
+        let i = 0;
+        i < size;
+        i++
+    ) {
+        diagonalOne.push(
+            i * size + i
+        );
+    }
+
+    lines.push(diagonalOne);
+
+    const diagonalTwo = [];
+
+    for (
+        let i = 0;
+        i < size;
+        i++
+    ) {
+        diagonalTwo.push(
+            i * size + (size - 1 - i)
+        );
+    }
+
+    lines.push(diagonalTwo);
+
+    const winningLine =
+        lines.find(line =>
+            line.every(
+                index => bingoMarked[index]
+            )
+        );
+
+    if (!winningLine) {
+        return;
+    }
+
+    const cells =
+        document.querySelectorAll(
+            ".bingo-cell"
+        );
+
+    winningLine.forEach(index => {
+        if (cells[index]) {
+            cells[index].classList.add("win");
+        }
+    });
+
+    const name1 =
+        document.getElementById(
+            "bingoName1"
+        ).value.trim() ||
+        "Partner 1";
+
+    const name2 =
+        document.getElementById(
+            "bingoName2"
+        ).value.trim() ||
+        "Partner 2";
+
+    document.getElementById(
+        "bingoStatus"
+    ).innerHTML =
+        `🎉 BINGO! ${name1} & ${name2} win!`;
+}
+
+function goBack() {
+    menu.style.display = "block";
+    deckIntro.style.display = "none";
+    game.style.display = "none";
+    diceGame.style.display = "none";
+    bingoGame.style.display = "none";
+
+    document.body.className = "";
+}              
