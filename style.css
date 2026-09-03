@@ -1286,3 +1286,17 @@ body.bingo-theme {
     }
 
 }
+
+
+
+.bingo-button {
+    position: relative;
+    z-index: 1000;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+#menu {
+    position: relative;
+    z-index: 10;
+}
