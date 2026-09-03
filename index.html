@@ -351,20 +351,133 @@ BACK
 <!-- COUPLES BINGO -->
 <!-- ========================= -->
 
-<div id="bingoGame"
-     style="display:none;">
+<div id="bingoGame" style="display:none;">
 
+    <div class="bingo-header">
+        <h2 class="bingo-title">🔥 SPICY COUPLES BINGO</h2>
 
-<div class="bingo-header">
+        <p class="bingo-subtitle">
+            Mark squares as you complete them.<br>
+            First to a full line wins.
+        </p>
+    </div>
 
-<h2 class="bingo-title">
-🔥 COUPLES BINGO
-</h2>
+    <div class="bingo-controls">
 
+        <div class="bingo-name-row">
+            <input
+                id="bingoName1"
+                type="text"
+                placeholder="Partner 1 name"
+            >
 
-<p class="bingo-subtitle">
-Complete a line together.
-</p>
+            <input
+                id="bingoName2"
+                type="text"
+                placeholder="Partner 2 name"
+            >
+        </div>
+
+        <div class="bingo-kink-section">
+
+            <div class="bingo-section-title">
+                Intensity / Kinks
+            </div>
+
+            <div class="bingo-kinks" id="bingoKinkToggles">
+
+                <label>
+                    <input type="checkbox" value="soft" checked>
+                    Soft
+                </label>
+
+                <label>
+                    <input type="checkbox" value="tease" checked>
+                    Tease
+                </label>
+
+                <label>
+                    <input type="checkbox" value="oral" checked>
+                    Oral
+                </label>
+
+                <label>
+                    <input type="checkbox" value="touch" checked>
+                    Touch
+                </label>
+
+                <label>
+                    <input type="checkbox" value="toys">
+                    Toys
+                </label>
+
+                <label>
+                    <input type="checkbox" value="bdsm">
+                    Light BDSM
+                </label>
+
+                <label>
+                    <input type="checkbox" value="role">
+                    Roleplay
+                </label>
+
+                <label>
+                    <input type="checkbox" value="intense">
+                    Intense
+                </label>
+
+            </div>
+        </div>
+
+        <div class="bingo-board-size">
+
+            <div class="bingo-section-title">
+                Board Size
+            </div>
+
+            <select id="bingoSize">
+                <option value="3">3 × 3</option>
+                <option value="4">4 × 4</option>
+                <option value="5" selected>5 × 5</option>
+            </select>
+
+        </div>
+
+        <div class="bingo-button-row">
+
+            <button
+                type="button"
+                onclick="generateBingoBoard()">
+                New Board
+            </button>
+
+            <button
+                type="button"
+                class="bingo-secondary"
+                onclick="resetBingoMarks()">
+                Reset Marks
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="bingo-board-wrap">
+
+        <div id="bingoBoard" class="bingo-board"></div>
+
+        <div id="bingoStatus" class="bingo-status">
+            Complete a row, column, or diagonal to win!
+        </div>
+
+    </div>
+
+    <button
+        type="button"
+        class="bingo-back"
+        onclick="closeBingo()">
+        ← Back to Menu
+    </button>
 
 </div>
 
